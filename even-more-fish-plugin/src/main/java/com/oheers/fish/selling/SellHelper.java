@@ -1,16 +1,16 @@
-package com.oheers.fish.selling;
+package com.Austin-W-Music.fish.selling;
 
 import com.devskiller.friendly_id.FriendlyId;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.api.economy.Economy;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.utils.nbt.NbtKeys;
-import com.oheers.fish.utils.nbt.NbtUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.api.economy.Economy;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.utils.nbt.NbtKeys;
+import com.Austin-W-Music.fish.utils.nbt.NbtUtils;
 import de.themoep.inventorygui.GuiStorageElement;
 import de.themoep.inventorygui.InventoryGui;
 import org.bukkit.Sound;
@@ -137,9 +137,9 @@ public class SellHelper {
             return null;
         }
 
-        final String fishName = NbtUtils.getString(item, NbtKeys.EMF_FISH_NAME);
-        final String fishRarity = NbtUtils.getString(item, NbtKeys.EMF_FISH_RARITY);
-        Float floatLength = NbtUtils.getFloat(item, NbtKeys.EMF_FISH_LENGTH);
+        final String fishName = NbtUtils.getString(item, NbtKeys.DF_FISH_NAME);
+        final String fishRarity = NbtUtils.getString(item, NbtKeys.DF_FISH_RARITY);
+        Float floatLength = NbtUtils.getFloat(item, NbtKeys.DF_FISH_LENGTH);
         final double fishLength = floatLength == null ? -1.0 : floatLength;
         final double fishValue = WorthNBT.getValue(item);
 
@@ -159,13 +159,13 @@ public class SellHelper {
     }
 
     private void logSoldFish(final UUID uuid, @NotNull List<SoldFish> soldFish) {
-        int userId = EvenMoreFish.getInstance().getDatabase().getUserId(uuid);
+        int userId = DeepFishing.getInstance().getDatabase().getUserId(uuid);
         final String transactionId = FriendlyId.createFriendlyId();
         final Timestamp timestamp = Timestamp.from(Instant.now());
 
-        EvenMoreFish.getInstance().getDatabase().createTransaction(transactionId, userId, timestamp);
+        DeepFishing.getInstance().getDatabase().createTransaction(transactionId, userId, timestamp);
         for(final SoldFish fish: soldFish) {
-            EvenMoreFish.getInstance().getDatabase().createSale(transactionId, fish.getName(),fish.getRarity(), fish.getAmount(),fish.getLength(), fish.getTotalValue());
+            DeepFishing.getInstance().getDatabase().createSale(transactionId, fish.getName(),fish.getRarity(), fish.getAmount(),fish.getLength(), fish.getTotalValue());
         }
 
         double moneyEarned = getTotalWorth(soldFish);
