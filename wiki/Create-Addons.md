@@ -2,11 +2,11 @@ WIP.
 
 Example ItemsAdder Addon:
 ```java
-package com.oheers.evenmorefish.addons;
+package com.Austin-W-Music.DeepFishing.addons;
 
 
-import com.oheers.fish.api.addons.ItemAddon;
-import com.oheers.fish.api.plugin.EMFPlugin;
+import com.Austin-W-Music.fish.api.addons.ItemAddon;
+import com.Austin-W-Music.fish.api.plugin.DFPlugin;
 import dev.lone.itemsadder.api.CustomStack;
 import dev.lone.itemsadder.api.Events.ItemsAdderLoadDataEvent;
 import org.bukkit.Bukkit;
@@ -59,10 +59,10 @@ public class ItemsAdderItemAddon extends ItemAddon implements Listener {
     @EventHandler
     public void onItemsLoad(ItemsAdderLoadDataEvent event) {
         getLogger().info("Detected that itemsadder has finished loading all items...");
-        getLogger().info("Reloading EMF.");
+        getLogger().info("Reloading DF.");
         this.itemsAdderLoaded = true;
 
-        ((EMFPlugin) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("EvenMoreFish"))).reload();
+        ((DFPlugin) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("DeepFishing"))).reload();
     }
 }
 ```
