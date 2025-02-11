@@ -1,6 +1,6 @@
-package com.oheers.fish.utils;
+package com.Austin-W-Music.fish.utils;
 
-import com.oheers.fish.FishUtils;
+import com.Austin-W-Music.fish.FishUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
