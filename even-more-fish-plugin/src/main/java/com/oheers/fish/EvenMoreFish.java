@@ -1,47 +1,47 @@
-package com.oheers.fish;
+package com.Austin-W-Music.fish;
 
 import com.github.Anon8281.universalScheduler.UniversalScheduler;
 import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
-import com.oheers.fish.adapter.PaperAdapter;
-import com.oheers.fish.adapter.SpigotAdapter;
-import com.oheers.fish.addons.AddonManager;
-import com.oheers.fish.addons.DefaultAddons;
-import com.oheers.fish.api.EMFAPI;
-import com.oheers.fish.api.adapter.PlatformAdapter;
-import com.oheers.fish.api.economy.Economy;
-import com.oheers.fish.api.plugin.EMFPlugin;
-import com.oheers.fish.api.requirement.RequirementManager;
-import com.oheers.fish.api.reward.RewardManager;
-import com.oheers.fish.baits.BaitListener;
-import com.oheers.fish.baits.BaitManager;
-import com.oheers.fish.commands.AdminCommand;
-import com.oheers.fish.commands.MainCommand;
-import com.oheers.fish.competition.AutoRunner;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionQueue;
-import com.oheers.fish.competition.JoinChecker;
-import com.oheers.fish.competition.rewardtypes.*;
-import com.oheers.fish.competition.rewardtypes.external.*;
-import com.oheers.fish.config.BaitFile;
-import com.oheers.fish.config.GUIConfig;
-import com.oheers.fish.config.GUIFillerConfig;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.config.messages.Messages;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.database.Database;
-import com.oheers.fish.economy.GriefPreventionEconomyType;
-import com.oheers.fish.economy.PlayerPointsEconomyType;
-import com.oheers.fish.economy.VaultEconomyType;
-import com.oheers.fish.events.*;
-import com.oheers.fish.fishing.FishingProcessor;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
-import com.oheers.fish.requirements.*;
-import com.oheers.fish.utils.AntiCraft;
-import com.oheers.fish.utils.HeadDBIntegration;
-import com.oheers.fish.utils.ItemFactory;
-import com.oheers.fish.utils.nbt.NbtKeys;
+import com.Austin-W-Music.fish.adapter.PaperAdapter;
+import com.Austin-W-Music.fish.adapter.SpigotAdapter;
+import com.Austin-W-Music.fish.addons.AddonManager;
+import com.Austin-W-Music.fish.addons.DefaultAddons;
+import com.Austin-W-Music.fish.api.DFAPI;
+import com.Austin-W-Music.fish.api.adapter.PlatformAdapter;
+import com.Austin-W-Music.fish.api.economy.Economy;
+import com.Austin-W-Music.fish.api.plugin.DFPlugin;
+import com.Austin-W-Music.fish.api.requirement.RequirementManager;
+import com.Austin-W-Music.fish.api.reward.RewardManager;
+import com.Austin-W-Music.fish.baits.BaitListener;
+import com.Austin-W-Music.fish.baits.BaitManager;
+import com.Austin-W-Music.fish.commands.AdminCommand;
+import com.Austin-W-Music.fish.commands.MainCommand;
+import com.Austin-W-Music.fish.competition.AutoRunner;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionQueue;
+import com.Austin-W-Music.fish.competition.JoinChecker;
+import com.Austin-W-Music.fish.competition.rewardtypes.*;
+import com.Austin-W-Music.fish.competition.rewardtypes.external.*;
+import com.Austin-W-Music.fish.config.BaitFile;
+import com.Austin-W-Music.fish.config.GUIConfig;
+import com.Austin-W-Music.fish.config.GUIFillerConfig;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.config.messages.Messages;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.database.Database;
+import com.Austin-W-Music.fish.economy.GriefPreventionEconomyType;
+import com.Austin-W-Music.fish.economy.PlayerPointsEconomyType;
+import com.Austin-W-Music.fish.economy.VaultEconomyType;
+import com.Austin-W-Music.fish.events.*;
+import com.Austin-W-Music.fish.fishing.FishingProcessor;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.requirements.*;
+import com.Austin-W-Music.fish.utils.AntiCraft;
+import com.Austin-W-Music.fish.utils.HeadDBIntegration;
+import com.Austin-W-Music.fish.utils.ItemFactory;
+import com.Austin-W-Music.fish.utils.nbt.NbtKeys;
 import de.themoep.inventorygui.InventoryGui;
 import de.tr7zw.changeme.nbtapi.NBT;
 import dev.jorel.commandapi.CommandAPI;
@@ -71,7 +71,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EvenMoreFish extends EMFPlugin {
+public class DeepFishing extends DFPlugin {
 
     private final Random random = new Random();
 
@@ -103,15 +103,15 @@ public class EvenMoreFish extends EMFPlugin {
     private Database database;
     private HeadDatabaseAPI HDBapi;
 
-    private static EvenMoreFish instance;
+    private static DeepFishing instance;
     private static TaskScheduler scheduler;
     private static PlatformAdapter platformAdapter;
-    private EMFAPI api;
+    private DFAPI api;
 
     private AddonManager addonManager;
     private Map<String, String> commandUsages = new HashMap<>();
 
-    public static EvenMoreFish getInstance() {
+    public static DeepFishing getInstance() {
         return instance;
     }
 
@@ -138,18 +138,18 @@ public class EvenMoreFish extends EMFPlugin {
         }
 
         // This should only ever be done once.
-        EMFPlugin.setInstance(this);
+        DFPlugin.setInstance(this);
 
         CommandAPI.onEnable();
 
-        // If EMF folder does not exist, this is the first load.
+        // If DF folder does not exist, this is the first load.
         firstLoad = !getDataFolder().exists();
 
         instance = this;
         scheduler = UniversalScheduler.getScheduler(this);
         platformAdapter = loadAdapter();
 
-        this.api = new EMFAPI();
+        this.api = new DFAPI();
 
         decidedRarities = new HashMap<>();
 
@@ -182,7 +182,7 @@ public class EvenMoreFish extends EMFPlugin {
 
         // could not set up economy.
         if (!Economy.getInstance().isEnabled()) {
-            EvenMoreFish.getInstance().getLogger().warning("EvenMoreFish won't be hooking into economy. If this wasn't by choice in config.yml, please install Economy handling plugins.");
+            DeepFishing.getInstance().getLogger().warning("DeepFishing won't be hooking into economy. If this wasn't by choice in config.yml, please install Economy handling plugins.");
         }
 
         setupPermissions();
@@ -217,7 +217,7 @@ public class EvenMoreFish extends EMFPlugin {
             DataManager.getInstance().loadUserReportsIntoCache();
         }
 
-        logger.log(Level.INFO, "EvenMoreFish by Oheers : Enabled");
+        logger.log(Level.INFO, "DeepFishing by DevAustin : Enabled");
 
         // Set this to false as the plugin is now loaded.
         firstLoad = false;
@@ -252,7 +252,7 @@ public class EvenMoreFish extends EMFPlugin {
         FishManager.getInstance().unload();
         BaitManager.getInstance().unload();
 
-        logger.log(Level.INFO, "EvenMoreFish by Oheers : Disabled");
+        logger.log(Level.INFO, "DeepFishing by DevAustin : Disabled");
     }
 
     private void saveAdditionalDefaultAddons() {
@@ -427,7 +427,7 @@ public class EvenMoreFish extends EMFPlugin {
      */
     public void setCustomNBTRod(@NotNull ItemStack item) {
         NBT.modify(item, nbt -> {
-            nbt.getOrCreateCompound(NbtKeys.EMF_COMPOUND).setBoolean(NbtKeys.EMF_ROD_NBT, true);
+            nbt.getOrCreateCompound(NbtKeys.DF_COMPOUND).setBoolean(NbtKeys.DF_ROD_NBT, true);
         });
     }
 
@@ -472,7 +472,7 @@ public class EvenMoreFish extends EMFPlugin {
     private void registerCommands() {
         new MainCommand().getCommand().register(this);
 
-        // Shortcut command for /emf admin
+        // Shortcut command for /df admin
         if (MainConfig.getInstance().isAdminShortcutCommandEnabled()) {
             new AdminCommand(
                     MainConfig.getInstance().getAdminShortcutCommandName()
