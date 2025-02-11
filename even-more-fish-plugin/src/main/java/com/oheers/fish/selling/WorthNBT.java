@@ -1,11 +1,11 @@
-package com.oheers.fish.selling;
+package com.Austin-W-Music.fish.selling;
 
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
-import com.oheers.fish.utils.nbt.NbtKeys;
-import com.oheers.fish.utils.nbt.NbtUtils;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.utils.nbt.NbtKeys;
+import com.Austin-W-Music.fish.utils.nbt.NbtUtils;
 import de.tr7zw.changeme.nbtapi.NBT;
 import de.tr7zw.changeme.nbtapi.iface.ReadWriteNBT;
 import org.bukkit.NamespacedKey;
@@ -22,27 +22,27 @@ public class WorthNBT {
     public static ItemStack setNBT(ItemStack fishItem, Fish fish) {
         // creates key and plops in the value of "value"
         NBT.modify(fishItem, nbt -> {
-            ReadWriteNBT emfCompound = nbt.getOrCreateCompound(NbtKeys.EMF_COMPOUND);
+            ReadWriteNBT emfCompound = nbt.getOrCreateCompound(NbtKeys.DF_COMPOUND);
             if (fish.getLength() > 0) {
-                emfCompound.setFloat(NbtKeys.EMF_FISH_LENGTH, fish.getLength());
+                dfCompound.setFloat(NbtKeys.EMF_FISH_LENGTH, fish.getLength());
             }
             if (!fish.hasFishermanDisabled() && fish.getFisherman() != null) {
-                emfCompound.setString(NbtKeys.EMF_FISH_PLAYER, fish.getFisherman().toString());
+                dfCompound.setString(NbtKeys.DF_FISH_PLAYER, fish.getFisherman().toString());
             }
-            emfCompound.setString(NbtKeys.EMF_FISH_NAME, fish.getName());
-            emfCompound.setString(NbtKeys.EMF_FISH_RARITY, fish.getRarity().getId());
-            emfCompound.setInteger(NbtKeys.EMF_FISH_RANDOM_INDEX, fish.getFactory().getChosenRandomIndex());
+            dfCompound.setString(NbtKeys.DF_FISH_NAME, fish.getName());
+            dfCompound.setString(NbtKeys.DF_FISH_RARITY, fish.getRarity().getId());
+            dfCompound.setInteger(NbtKeys.DF_FISH_RANDOM_INDEX, fish.getFactory().getChosenRandomIndex());
         });
 
         return fishItem;
     }
 
     public static void setNBT(Skull fishSkull, Fish fish) {
-        NamespacedKey nbtlength = NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_LENGTH);
-        NamespacedKey nbtplayer = NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_PLAYER);
-        NamespacedKey nbtrarity = NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_RARITY);
-        NamespacedKey nbtname = NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_NAME);
-        NamespacedKey nbtrandomIndex = NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_RANDOM_INDEX);
+        NamespacedKey nbtlength = NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_LENGTH);
+        NamespacedKey nbtplayer = NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_PLAYER);
+        NamespacedKey nbtrarity = NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_RARITY);
+        NamespacedKey nbtname = NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_NAME);
+        NamespacedKey nbtrandomIndex = NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_RANDOM_INDEX);
 
         //TODO try with NBT-API
         PersistentDataContainer itemMeta = fishSkull.getPersistentDataContainer();
@@ -65,9 +65,9 @@ public class WorthNBT {
         }
 
         // it's a fish so it'll definitely have these NBT values
-        Float length = NbtUtils.getFloat(item, NbtKeys.EMF_FISH_LENGTH);
-        String rarityStr = NbtUtils.getString(item, NbtKeys.EMF_FISH_RARITY);
-        String name = NbtUtils.getString(item, NbtKeys.EMF_FISH_NAME);
+        Float length = NbtUtils.getFloat(item, NbtKeys.DF_FISH_LENGTH);
+        String rarityStr = NbtUtils.getString(item, NbtKeys.DF_FISH_RARITY);
+        String name = NbtUtils.getString(item, NbtKeys.DF_FISH_NAME);
 
         // gets a possible set-worth in the fish config
         try {
@@ -87,7 +87,7 @@ public class WorthNBT {
 
     public static ItemStack attributeDefault(ItemStack defaultGUIItem) {
         NBT.modify(defaultGUIItem, nbt -> {
-            nbt.getOrCreateCompound(NbtKeys.EMF_COMPOUND).setByte(NbtKeys.DEFAULT_GUI_ITEM, Byte.MAX_VALUE);
+            nbt.getOrCreateCompound(NbtKeys.DF_COMPOUND).setByte(NbtKeys.DEFAULT_GUI_ITEM, Byte.MAX_VALUE);
         });
         return defaultGUIItem;
     }
