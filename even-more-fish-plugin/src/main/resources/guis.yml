@@ -1,4 +1,4 @@
-# This file is for the 1.7 release of EvenMoreFish, if you are using this before your plugin is using version 1.7.2 there
+# This file is for the 1.7 release of DeepFishing, if you are using this before your plugin is using version 1.7.2 there
 # will likely be a few issues or changes to the file won't take effect on the plugin.
 
 # An example button, to hopefully help with understanding what they can do.
@@ -50,7 +50,7 @@ general:
       - "&eGo to the last page"
 
 main-menu:
-  title: "&1EvenMoreFish"
+  title: "&7&lDeep&9&lFishing"
   layout:
     - "126515621"
     - "23     32"
