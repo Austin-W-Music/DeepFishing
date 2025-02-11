@@ -27,5 +27,5 @@ _These will only load if the relevant external plugin is installed._
 | GriefPrevention Claim Blocks | GriefPrevention           | `GP_CLAIM_BLOCKS:5`          | Gives GP claim blocks. |
 | AuraSkills XP                | AuraSkills                | `AURASKILLS_XP:Archery,10`   | Gives AuraSkills xp.   |
 | McMMO XP                     | McMMO                     | `MCMMO_XP:Woodcutting,15`    | Gives McMMO xp.        |
-| Permission                   | Vault + Permission Plugin | `PERMISSION:emf.example`     | Gives a permission.    |
+| Permission                   | Vault + Permission Plugin | `PERMISSION:df.example`     | Gives a permission.    |
 | Money                        | Vault + Economy Plugin    | `MONEY:1000`                 | Gives money.           |
