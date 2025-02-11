@@ -1,4 +1,4 @@
-package com.oheers.fish.utils.nbt;
+package com.Austin-W-Music.fish.utils.nbt;
 
 import de.tr7zw.changeme.nbtapi.NBT;
 import de.tr7zw.changeme.nbtapi.iface.ReadableItemNBT;
@@ -81,7 +81,7 @@ public class NbtUtils {
     }
 
     public static String[] getBaitArray(final ItemStack item) {
-        final String appliedBait = NbtUtils.getString(item, NbtKeys.EMF_APPLIED_BAIT);
+        final String appliedBait = NbtUtils.getString(item, NbtKeys.DF_APPLIED_BAIT);
         if (appliedBait == null) return new String[0];
         return appliedBait.split(",");
     }
