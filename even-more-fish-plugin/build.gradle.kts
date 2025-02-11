@@ -16,7 +16,7 @@ plugins {
     alias(libs.plugins.jooq)
 }
 
-group = "com.oheers.evenmorefish"
+group = "com.Austin-W-Music.DeepFishing"
 version = "2.0.0-SNAPSHOT"
 
 description = "A fishing extension bringing an exciting new experience to fishing."
@@ -44,8 +44,8 @@ repositories {
 }
 
 dependencies {
-    api(project(":even-more-fish-api"))
-    implementation(project(":even-more-fish-paper"))
+    api(project(":DeepFishing-api"))
+    implementation(project(":DeepFishing-paper"))
 
     compileOnly(libs.spigot.api)
     compileOnly(libs.vault.api)
@@ -107,18 +107,18 @@ dependencies {
 
     library(libs.maven.artifact)
 
-    jooqGenerator(project(":even-more-fish-database-extras"))
+    jooqGenerator(project(":DeepFishing-database-extras"))
     jooqGenerator(libs.jooq.meta.extensions)
     jooqGenerator(libs.connectors.mysql)
 }
 
 bukkit {
-    name = "EvenMoreFish"
-    author = "Oheers"
-    main = "com.oheers.fish.EvenMoreFish"
+    name = "DeepFishing"
+    author = "DevAustin"
+    main = "com.Austin-W-Music.fish.DeepFishing"
     version = project.version.toString()
     description = project.description.toString()
-    website = "https://github.com/Oheers/EvenMoreFish"
+    website = "https://github.com/Austin-W-Music/DeepFishing"
     foliaSupported = true
 
     depend = listOf()
@@ -145,63 +145,63 @@ bukkit {
     permissions {
         register("emf.*") {
             children = listOf(
-                "emf.admin",
-                "emf.user"
+                "df.admin",
+                "df.user"
             )
         }
 
-        register("emf.admin") {
+        register("df.admin") {
             children = listOf(
-                "emf.admin.update.notify",
-                "emf.admin.migrate"
+                "df.admin.update.notify",
+                "df.admin.migrate"
             )
         }
 
-        register("emf.admin.update.notify") {
+        register("df.admin.update.notify") {
             description = "Allows users to be notified about updates."
         }
 
-        register("emf.admin.migrate") {
+        register("df.admin.migrate") {
             description = "Allows users to use the migrate command."
         }
 
-        register("emf.user") {
+        register("df.user") {
             children = listOf(
-                "emf.toggle",
-                "emf.top",
-                "emf.shop",
-                "emf.use_rod",
-                "emf.sellall",
-                "emf.help",
-                "emf.next",
-                "emf.applybaits"
+                "df.toggle",
+                "df.top",
+                "df.shop",
+                "df.use_rod",
+                "df.sellall",
+                "df.help",
+                "df.next",
+                "df.applybaits"
             )
         }
 
-        register("emf.sellall") {
+        register("df.sellall") {
             description = "Allows users to use sellall."
         }
-        register("emf.toggle") {
-            description = "Allows users to toggle emf."
+        register("df.toggle") {
+            description = "Allows users to toggle df."
         }
 
-        register("emf.top") {
-            description = "Allows users to use /emf top."
+        register("df.top") {
+            description = "Allows users to use /df top."
         }
 
-        register("emf.shop") {
-            description = "Allows users to use /emf shop."
+        register("df.shop") {
+            description = "Allows users to use /df shop."
         }
 
-        register("emf.use_rod") {
-            description = "Allows users to use emf rods."
+        register("df.use_rod") {
+            description = "Allows users to use df rods."
         }
 
-        register("emf.next") {
+        register("df.next") {
             description = "Allows users to see when the next competition will be."
         }
 
-        register("emf.help") {
+        register("df.help") {
             description = "Allows users to see the help messages."
             default = BukkitPluginDescription.Permission.Default.TRUE
         }
@@ -214,7 +214,7 @@ sourceSets {
     }
 }
 tasks.named("compileJava") {
-    dependsOn(":even-more-fish-plugin:generateMysqlJooq")
+    dependsOn(":DeepFishing-plugin:generateMysqlJooq")
 }
 
 tasks {
@@ -224,7 +224,7 @@ tasks {
         )
 
         doLast {
-            val file = project.layout.buildDirectory.file("libs/even-more-fish-plugin-${version}.jar").get()
+            val file = project.layout.buildDirectory.file("libs/DeepFishingh-plugin-${version}.jar").get()
             file.asFile.delete()
         }
 
@@ -261,7 +261,7 @@ tasks {
         manifest {
             val buildNumber: String? by project
 
-            attributes["Specification-Title"] = "EvenMoreFish"
+            attributes["Specification-Title"] = "DeepFishing"
             attributes["Specification-Version"] = project.version
             attributes["Implementation-Title"] = grgit.branch.current().name
             attributes["Implementation-Version"] = buildNumberOrDate
@@ -274,16 +274,16 @@ tasks {
 
         exclude("META-INF/**")
 
-        archiveFileName.set("even-more-fish-${project.version}-${buildNumberOrDate}.jar")
+        archiveFileName.set("DeepFishing-${project.version}-${buildNumberOrDate}.jar")
         archiveClassifier.set("shadow")
 
-        relocate("de.tr7zw.changeme.nbtapi", "com.oheers.fish.utils.nbtapi")
-        relocate("org.bstats", "com.oheers.fish.libs.bstats")
+        relocate("de.tr7zw.changeme.nbtapi", "com.Austin-W-Music.fish.utils.nbtapi")
+        relocate("org.bstats", "com.Austin-W-Music.fish.libs.bstats")
         relocate("com.github.Anon8281.universalScheduler", "com.oheers.fish.libs.universalScheduler")
-        relocate("de.themoep.inventorygui", "com.oheers.fish.libs.inventorygui")
-        relocate("uk.firedev.vanishchecker", "com.oheers.fish.libs.vanishchecker")
-        relocate("dev.dejvokep.boostedyaml", "com.oheers.fish.libs.boostedyaml")
-        relocate("dev.jorel.commandapi", "com.oheers.fish.libs.commandapi")
+        relocate("de.themoep.inventorygui", "com.Austin-W-Music.fish.libs.inventorygui")
+        relocate("uk.firedev.vanishchecker", "com.Austin-W-Music.fish.libs.vanishchecker")
+        relocate("dev.dejvokep.boostedyaml", "com.Austin-W-Music.fish.libs.boostedyaml")
+        relocate("dev.jorel.commandapi", "com.Austin-W-Music.fish.libs.commandapi")
     }
 
     compileJava {
@@ -370,7 +370,7 @@ fun JooqExtension.configureDialect(dialect: String, latestSchema: String) {
                         properties.add(Property().withKey("unqualifiedSchema").withValue("none"))
                     }
                     target.apply {
-                        packageName = "com.oheers.fish.database.generated.${dialect}"
+                        packageName = "com.Austin-W-Music.fish.database.generated.${dialect}"
                         directory = "src/main/generated/"
                     }
                 }
