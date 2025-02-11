@@ -24,9 +24,9 @@ use-this-casing: false
 displayname: "&eExample Rarity"
 
 # The permission required to fish this rarity.
-permission: "emf.rarity.example"
+permission: "df.rarity.example"
 
-# You can set custom requirements for this rarity to appear, all possible requirements are on the wiki: https://github.com/Oheers/EvenMoreFish/wiki/Requirements
+# You can set custom requirements for this rarity to appear, all possible requirements are on the wiki: https://github.com/Austin-W-Music/DeepFishing/wiki/Requirements
 requirements:
   biome:
     - OCEAN
@@ -66,7 +66,7 @@ fish:
       head-64: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTI0NWMzNThiZjY1Mjk2ZGIzZjU4NGM5MTQ4YTEwZGYzYjZiYTRiZGMzYjdiYjZkMjhiNjFlNDEzODFkYzBmNSJ9fX0=
       # This gives the catcher's own head
       own-head: true
-      # This builds an item from raw NBT. You can use `/emf admin rawitem` to get this for any item.
+      # This builds an item from raw NBT. You can use `/df admin rawitem` to get this for any item.
       # This example was created on 1.21.3, this may not work on other versions.
       raw-nbt: '{components:{"minecraft:enchantments":{levels:{"minecraft:looting":3,"minecraft:mending":1,"minecraft:sharpness":5,"minecraft:unbreaking":3}}},count:1,id:"minecraft:netherite_sword"}'
 
@@ -129,7 +129,7 @@ fish:
     lore:
       - "&7Hola!"
 
-    # You can set custom requirements for this fish to appear, all possible requirements are on the wiki: https://github.com/Oheers/EvenMoreFish/wiki/Requirements
+    # You can set custom requirements for this fish to appear, all possible requirements are on the wiki: https://github.com/Austin-W-Music/DeepFishing/wiki/Requirements
     requirements:
       biome:
         - COLD_OCEAN
