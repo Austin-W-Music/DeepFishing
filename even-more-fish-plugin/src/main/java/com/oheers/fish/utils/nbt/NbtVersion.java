@@ -1,4 +1,4 @@
-package com.oheers.fish.utils.nbt;
+package com.Austin-W-Music.fish.utils.nbt;
 
 import de.tr7zw.changeme.nbtapi.NBT;
 import org.bukkit.block.BlockState;
@@ -31,8 +31,8 @@ public enum NbtVersion {
      */
     public static NbtVersion getVersion(final ItemStack itemStack) {
         return NBT.get(itemStack, nbt -> {
-            if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.EMF_COMPOUND))) {
-                return NbtVersion.COMPAT; //def an emf item
+            if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.DF_COMPOUND))) {
+                return NbtVersion.COMPAT; //def an df item
             }
             if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.PUBLIC_BUKKIT_VALUES))) {
                 return NbtVersion.LEGACY;
@@ -49,8 +49,8 @@ public enum NbtVersion {
      */
     public static NbtVersion getVersion(final BlockState state) {
         return NBT.get(state, nbt -> {
-            if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.EMF_COMPOUND))) {
-                return NbtVersion.COMPAT; //def an emf item
+            if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.DF_COMPOUND))) {
+                return NbtVersion.COMPAT; //def an df item
             }
             if (Boolean.TRUE.equals(nbt.hasTag(NbtKeys.PUBLIC_BUKKIT_VALUES))) {
                 return NbtVersion.LEGACY;
