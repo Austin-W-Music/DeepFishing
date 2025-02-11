@@ -1,10 +1,10 @@
-package com.oheers.fish;
+package com.Austin-W-Music.fish;
 
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.exceptions.InvalidFishException;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.selling.WorthNBT;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.exceptions.InvalidFishException;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.selling.WorthNBT;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
