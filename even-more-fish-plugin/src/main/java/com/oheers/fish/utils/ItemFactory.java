@@ -1,11 +1,11 @@
-package com.oheers.fish.utils;
+package com.Austin-W-Music.fish.utils;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.api.addons.exceptions.IncorrectAssignedMaterialException;
-import com.oheers.fish.api.addons.exceptions.NoPrefixException;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.api.addons.exceptions.IncorrectAssignedMaterialException;
+import com.Austin-W-Music.fish.api.addons.exceptions.NoPrefixException;
+import com.Austin-W-Music.fish.config.MainConfig;
 import de.tr7zw.changeme.nbtapi.NBT;
 import de.tr7zw.changeme.nbtapi.NbtApiException;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
@@ -204,11 +204,11 @@ public class ItemFactory {
      */
     private @Nullable ItemStack checkHeadDB() {
         // The fish has item: headdb selected
-        if (!EvenMoreFish.getInstance().isUsingHeadsDB()) return null;
+        if (!DeepFishing.getInstance().isUsingHeadsDB()) return null;
 
         int headID = this.configurationFile.getInt(configLocation + "item.headdb", -1);
         if (headID != -1) {
-            return EvenMoreFish.getInstance().getHDBapi().getItemHead(Integer.toString(headID));
+            return DeepFishing.getInstance().getHDBapi().getItemHead(Integer.toString(headID));
         }
 
         return null;
@@ -229,7 +229,7 @@ public class ItemFactory {
         try {
             item = NBT.itemStackFromNBT(NBT.parseNBT(rawValue));
         } catch (NbtApiException exception) {
-            EvenMoreFish.getInstance().getLogger().severe(configLocation + " has invalid raw NBT: " + rawValue);
+            DeepFishing.getInstance().getLogger().severe(configLocation + " has invalid raw NBT: " + rawValue);
         }
         if (item == null) {
             return null;
@@ -254,7 +254,7 @@ public class ItemFactory {
         if (material == null) {
             ItemStack customItemStack = checkMaterial(mValue);
             if (customItemStack != null) { return customItemStack; }
-            EvenMoreFish.getInstance().getLogger().severe(() -> String.format("%s has an incorrect assigned material: %s", configLocation, mValue));
+            DeepFishing.getInstance().getLogger().severe(() -> String.format("%s has an incorrect assigned material: %s", configLocation, mValue));
             material = Material.COD;
         }
 
@@ -289,7 +289,7 @@ public class ItemFactory {
             return getItem(materialId);
         } catch (NoPrefixException | IncorrectAssignedMaterialException e) {
             rawMaterial = true;
-            EvenMoreFish.getInstance().getLogger().warning(e::getMessage);
+            DeepFishing.getInstance().getLogger().warning(e::getMessage);
             return new ItemStack(Material.COD);
         }
     }
@@ -305,7 +305,7 @@ public class ItemFactory {
         List<String> lValues = this.configurationFile.getStringList(configLocation + "item.materials");
         if (!lValues.isEmpty()) {
 
-            final Random rand = EvenMoreFish.getInstance().getRandom();
+            final Random rand = DeepFishing.getInstance().getRandom();
 
             if (randomIndex == -1 || randomIndex + 1 > lValues.size()) {
                 randomIndex = rand.nextInt(lValues.size());
@@ -316,7 +316,7 @@ public class ItemFactory {
             itemRandom = true;
 
             if (customItemStack == null) {
-                EvenMoreFish.getInstance().getLogger().severe(configLocation + "'s has an incorrect material name in its materials list.");
+                DeepFishing.getInstance().getLogger().severe(configLocation + "'s has an incorrect material name in its materials list.");
                 for (String material : lValues) {
                     ItemStack item = checkMaterial(material);
                     if (item != null) {
@@ -343,7 +343,7 @@ public class ItemFactory {
         List<String> mh64Values = this.configurationFile.getStringList(configLocation + "item.multiple-head-64");
         if (!mh64Values.isEmpty()) {
 
-            final Random rand = EvenMoreFish.getInstance().getRandom();
+            final Random rand = DeepFishing.getInstance().getRandom();
 
             if (randomIndex == -1 || randomIndex + 1 > mh64Values.size()) {
                 randomIndex = rand.nextInt(mh64Values.size());
@@ -362,7 +362,7 @@ public class ItemFactory {
 
     private ItemStack checkRandomHeadDB(int randomIndex) {
         // The fish has item: headdb selected
-        if (!EvenMoreFish.getInstance().isUsingHeadsDB()) return null;
+        if (!DeepFishing.getInstance().isUsingHeadsDB()) return null;
 
         List<Integer> headIDs = this.configurationFile.getIntList(configLocation + "item.multiple-headdb");
         if (!headIDs.isEmpty()) {
@@ -377,7 +377,7 @@ public class ItemFactory {
             int headID = headIDs.get(randomIndex);
             itemRandom = true;
 
-            return EvenMoreFish.getInstance().getHDBapi().getItemHead(Integer.toString(headID));
+            return DeepFishing.getInstance().getHDBapi().getItemHead(Integer.toString(headID));
         }
 
         return null;
@@ -393,7 +393,7 @@ public class ItemFactory {
         List<String> mhuValues = this.configurationFile.getStringList(configLocation + "item.multiple-head-uuid");
         if (!mhuValues.isEmpty()) {
 
-            final Random rand = EvenMoreFish.getInstance().getRandom();
+            final Random rand = DeepFishing.getInstance().getRandom();
 
             if (randomIndex == -1 || randomIndex + 1 > mhuValues.size()) {
                 randomIndex = rand.nextInt(mhuValues.size());
@@ -406,7 +406,7 @@ public class ItemFactory {
             try {
                 return FishUtils.getSkullFromUUID(UUID.fromString(uuid));
             } catch (IllegalArgumentException illegalArgumentException) {
-                EvenMoreFish.getInstance().getLogger().severe("Could not load uuid: " + uuid + " as a multiple-head-uuid option for the config location" + configLocation);
+                DeepFishing.getInstance().getLogger().severe("Could not load uuid: " + uuid + " as a multiple-head-uuid option for the config location" + configLocation);
                 return new ItemStack(Material.COD);
             }
         }
@@ -452,7 +452,7 @@ public class ItemFactory {
             final String[] split = materialString.split(":", 2);
             final String prefix = split[0];
             final String id = split[1];
-            return EvenMoreFish.getInstance().getAddonManager().getItemStack(prefix,id);
+            return DeepFishing.getInstance().getAddonManager().getItemStack(prefix,id);
         }
 
 
@@ -507,7 +507,7 @@ public class ItemFactory {
             } else {
                 if (MainConfig.getInstance().doingRandomDurability()) {
                     int max = product.getType().getMaxDurability();
-                    meta.setDamage(EvenMoreFish.getInstance().getRandom().nextInt() * (max + 1));
+                    meta.setDamage(DeepFishing.getInstance().getRandom().nextInt() * (max + 1));
                 }
             }
         });
@@ -528,7 +528,7 @@ public class ItemFactory {
         if (loreConfig.isEmpty()) return;
 
         FishUtils.editMeta(product, meta -> {
-            AbstractMessage lore = EvenMoreFish.getAdapter().createMessage(loreConfig);
+            AbstractMessage lore = DeepFishing.getAdapter().createMessage(loreConfig);
             lore.setVariables(replacements);
             meta.setLore(lore.getLegacyListMessage());
         });
@@ -545,7 +545,7 @@ public class ItemFactory {
             if (displayName == null || displayName.isEmpty()) {
                 meta.setDisplayName("");
             } else {
-                AbstractMessage display = EvenMoreFish.getAdapter().createMessage(displayName);
+                AbstractMessage display = DeepFishing.getAdapter().createMessage(displayName);
                 display.setVariables(replacements);
                 meta.setDisplayName(display.getLegacyMessage());
             }
@@ -564,7 +564,7 @@ public class ItemFactory {
 
         String[] split = potionSettings.split(":");
         if (split.length != 3) {
-            EvenMoreFish.getInstance().getLogger().severe(configLocation + "item.potion: is formatted incorrectly in the fish.yml file. Use \"potion:duration:amplifier\".");
+            DeepFishing.getInstance().getLogger().severe(configLocation + "item.potion: is formatted incorrectly in the fish.yml file. Use \"potion:duration:amplifier\".");
         }
 
         try {
@@ -576,9 +576,9 @@ public class ItemFactory {
             );
             FishUtils.editMeta(product, PotionMeta.class, meta -> meta.addCustomEffect(effect, true));
         } catch (NumberFormatException exception) {
-            EvenMoreFish.getInstance().getLogger().severe(configLocation + "item.potion: is formatted incorrectly in the fish.yml file. Use \"potion:duration:amplifier\", where duration & amplifier are integer values.");
+            DeepFishing.getInstance().getLogger().severe(configLocation + "item.potion: is formatted incorrectly in the fish.yml file. Use \"potion:duration:amplifier\", where duration & amplifier are integer values.");
         } catch (NullPointerException exception) {
-            EvenMoreFish.getInstance().getLogger().severe(configLocation + "item.potion: " + split[0] + " is not a valid potion name. A list can be found here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html");
+            DeepFishing.getInstance().getLogger().severe(configLocation + "item.potion: " + split[0] + " is not a valid potion name. A list can be found here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html");
         }
     }
 
