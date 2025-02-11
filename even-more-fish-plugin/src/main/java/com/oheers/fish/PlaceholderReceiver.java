@@ -1,12 +1,12 @@
-package com.oheers.fish;
+package com.Austin-W-Music.fish;
 
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionType;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.database.model.UserReport;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionType;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class PlaceholderReceiver extends PlaceholderExpansion {
     
-    private final EvenMoreFish plugin;
+    private final DeepFishing plugin;
     
     /**
      * Since we register the expansion inside our own plugin, we
@@ -26,7 +26,7 @@ public class PlaceholderReceiver extends PlaceholderExpansion {
      *
      * @param plugin The instance of our plugin.
      */
-    public PlaceholderReceiver(EvenMoreFish plugin) {
+    public PlaceholderReceiver(DeepFishing plugin) {
         this.plugin = plugin;
     }
     
