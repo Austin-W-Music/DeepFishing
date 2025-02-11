@@ -1,10 +1,10 @@
 ## How to create your own RewardTypes
 
-The [RewardType](https://github.com/Oheers/EvenMoreFish/blob/master/even-more-fish-api/src/main/java/com/oheers/fish/api/reward/RewardType.java) interface exists in the API module of EvenMoreFish. Below is an example of how to use it.
+The [RewardType](https://github.com/Austin-W-Music/DeepFishing/blob/master/DeepFishing-api/src/main/java/com/Austin-W-Music/fish/api/reward/RewardType.java) interface exists in the API module of DeepFishing. Below is an example of how to use it.
 
 ```
 /**
- * This is the EXP RewardType that exists inside EvenMoreFish.
+ * This is the EXP RewardType that exists inside DeepFishing.
  */
 public class EXPRewardType implements RewardType {
 
@@ -21,7 +21,7 @@ public class EXPRewardType implements RewardType {
         try {
             experience = Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            EvenMoreFish.getInstance().getLogger().warning("Invalid number specified for RewardType " + getIdentifier() + ": " + value);
+            DeepFishing.getInstance().getLogger().warning("Invalid number specified for RewardType " + getIdentifier() + ": " + value);
             return;
         }
         player.giveExp(experience);
@@ -51,11 +51,11 @@ public class EXPRewardType implements RewardType {
      */
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
 ```
 
-After writing your own class, you can register it with EMF using the RewardType#register method.
+After writing your own class, you can register it with DF using the RewardType#register method.
 
