@@ -118,7 +118,7 @@ format:
     - "{baits}"
     - "&f"
 
-  # The default lore of the bait, changing this will not modify existing baits, but with an /emf admin reload, new baits
+  # The default lore of the bait, changing this will not modify existing baits, but with an /df admin reload, new baits
   # given out will have this lore. Bait themes can be set as a colour or prefix and be used in this lore.
   bait-lore:
     - "&f"
