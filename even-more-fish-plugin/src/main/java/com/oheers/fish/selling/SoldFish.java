@@ -1,4 +1,4 @@
-package com.oheers.fish.selling;
+package com.Austin-W-Music.fish.selling;
 
 public class SoldFish {
     private final String name;
