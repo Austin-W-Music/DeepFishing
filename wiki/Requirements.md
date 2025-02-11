@@ -15,7 +15,7 @@ rarities:
     weight: 100
     # What colour should the fish's name be?
     colour: '&7'
-    # Prices in /emf shop are calculated by using the calculation "length * worth-multiplier". You can change the worth-multiplier here.
+    # Prices in /df shop are calculated by using the calculation "length * worth-multiplier". You can change the worth-multiplier here.
     worth-multiplier: 0.1
     # Should a catch of this fish be broadcasted to everyone (true) or just the fisher (false)?
     broadcast: false
@@ -26,7 +26,7 @@ rarities:
       # Absolute maximum size the fish can be, this must be an integer
       maxSize: 30
     requirements:
-      permission: "emf.rarity.common"
+      permission: "df.rarity.common"
 ```
 
 ***
@@ -87,7 +87,7 @@ A config example of using the ingame-time requirement:
 ```
 
 #### IRL Time
-This restricts your users to only catching fish during certain times of the real-world day, this is inputted similar to times for [times in the competitions.yml wiki](https://github.com/Oheers/EvenMoreFish/wiki/competitions.yml#timing) where they are formatted by 00:00 in 24-hour format. Like ingame-time, you need to specify the minimum and maximum time.
+This restricts your users to only catching fish during certain times of the real-world day, this is inputted similar to times for [times in the competitions.yml wiki](https://github.com/Austin-W-Music/DeepFishing/wiki/competitions.yml#timing) where they are formatted by 00:00 in 24-hour format. Like ingame-time, you need to specify the minimum and maximum time.
 
 A config example of using the irl-time requirement:
 ```yaml
@@ -132,7 +132,7 @@ A config example of using the permission requirement:
 ```yaml
     Atlantic Cod:
       requirements:
-        permission: "emf.fish.atlanticcod" # When the player has this permission.
+        permission: "df.fish.atlanticcod" # When the player has this permission.
 ```
 
 #### Region
