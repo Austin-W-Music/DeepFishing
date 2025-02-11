@@ -1,9 +1,9 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,12 +23,12 @@ public class RegionRequirementType implements RequirementType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
