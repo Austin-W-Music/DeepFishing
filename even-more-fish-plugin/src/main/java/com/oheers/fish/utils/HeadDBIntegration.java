@@ -1,6 +1,6 @@
-package com.oheers.fish.utils;
+package com.Austin-W-Music.fish.utils;
 
-import com.oheers.fish.EvenMoreFish;
+import com.Austin-W-Music.fish.DeepFishing;
 import me.arcaniax.hdb.api.DatabaseLoadEvent;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.event.EventHandler;
@@ -10,6 +10,6 @@ public class HeadDBIntegration implements Listener {
 
     @EventHandler
     public void onHDBLoad(DatabaseLoadEvent event) {
-        EvenMoreFish.getInstance().setHDBapi(new HeadDatabaseAPI());
+        DeepFishing.getInstance().setHDBapi(new HeadDatabaseAPI());
     }
 }
