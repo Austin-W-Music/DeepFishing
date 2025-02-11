@@ -1,18 +1,18 @@
-package com.oheers.fish;
+package com.Austin-W-Music.fish;
 
 import br.net.fabiozumbi12.RedProtect.Bukkit.RedProtect;
 import br.net.fabiozumbi12.RedProtect.Bukkit.Region;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.configs.CompetitionFile;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.exceptions.InvalidFishException;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
-import com.oheers.fish.utils.nbt.NbtKeys;
-import com.oheers.fish.utils.nbt.NbtUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.configs.CompetitionFile;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.exceptions.InvalidFishException;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.utils.nbt.NbtKeys;
+import com.Austin-W-Music.fish.utils.nbt.NbtUtils;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
@@ -46,13 +46,13 @@ import java.util.stream.Stream;
 public class FishUtils {
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.0");
 
-    // checks for the "emf-fish-name" nbt tag, to determine if this ItemStack is a fish or not.
+    // checks for the "df-fish-name" nbt tag, to determine if this ItemStack is a fish or not.
     public static boolean isFish(ItemStack item) {
         if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
             return false;
         }
 
-        return NbtUtils.hasKey(item, NbtKeys.EMF_FISH_NAME);
+        return NbtUtils.hasKey(item, NbtKeys.DF_FISH_NAME);
     }
 
     public static boolean isFish(Skull skull) {
@@ -60,17 +60,17 @@ public class FishUtils {
             return false;
         }
 
-        return NbtUtils.hasKey(skull, NbtKeys.EMF_FISH_NAME);
+        return NbtUtils.hasKey(skull, NbtKeys.DF_FISH_NAME);
     }
 
     public static @Nullable Fish getFish(ItemStack item) {
         // all appropriate null checks can be safely assumed to have passed to get to a point where we're running this method.
 
-        String nameString = NbtUtils.getString(item, NbtKeys.EMF_FISH_NAME);
-        String playerString = NbtUtils.getString(item, NbtKeys.EMF_FISH_PLAYER);
-        String rarityString = NbtUtils.getString(item, NbtKeys.EMF_FISH_RARITY);
-        Float lengthFloat = NbtUtils.getFloat(item, NbtKeys.EMF_FISH_LENGTH);
-        Integer randomIndex = NbtUtils.getInteger(item, NbtKeys.EMF_FISH_RANDOM_INDEX);
+        String nameString = NbtUtils.getString(item, NbtKeys.DF_FISH_NAME);
+        String playerString = NbtUtils.getString(item, NbtKeys.DF_FISH_PLAYER);
+        String rarityString = NbtUtils.getString(item, NbtKeys.DF_FISH_RARITY);
+        Float lengthFloat = NbtUtils.getFloat(item, NbtKeys.DF_FISH_LENGTH);
+        Integer randomIndex = NbtUtils.getInteger(item, NbtKeys.DF_FISH_RANDOM_INDEX);
 
         if (nameString == null || rarityString == null) {
             return null; //throw new InvalidFishException("NBT Error");
@@ -105,11 +105,11 @@ public class FishUtils {
 
     public static @Nullable Fish getFish(Skull skull, Player fisher) throws InvalidFishException {
         // all appropriate null checks can be safely assumed to have passed to get to a point where we're running this method.
-        final String nameString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_NAME).toString()));
-        final String playerString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_PLAYER).toString()));
-        final String rarityString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_RARITY).toString()));
-        final Float lengthFloat = NBT.getPersistentData(skull, nbt -> nbt.getFloat(NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_LENGTH).toString()));
-        final Integer randomIndex = NBT.getPersistentData(skull, nbt -> nbt.getInteger(NbtUtils.getNamespacedKey(NbtKeys.EMF_FISH_RANDOM_INDEX).toString()));
+        final String nameString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_NAME).toString()));
+        final String playerString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_PLAYER).toString()));
+        final String rarityString = NBT.getPersistentData(skull, nbt -> nbt.getString(NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_RARITY).toString()));
+        final Float lengthFloat = NBT.getPersistentData(skull, nbt -> nbt.getFloat(NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_LENGTH).toString()));
+        final Integer randomIndex = NBT.getPersistentData(skull, nbt -> nbt.getInteger(NbtUtils.getNamespacedKey(NbtKeys.DF_FISH_RANDOM_INDEX).toString()));
 
         if (nameString == null || rarityString == null) {
             throw new InvalidFishException("NBT Error");
@@ -193,14 +193,14 @@ public class FishUtils {
             return false;
         } else {
             // the user has defined a region whitelist but doesn't have a region plugin.
-            EvenMoreFish.getInstance().getLogger().warning("Please install WorldGuard or RedProtect to use allowed-regions.");
+            DeepFishing.getInstance().getLogger().warning("Please install WorldGuard or RedProtect to use allowed-regions.");
             return true;
         }
     }
 
     public static @Nullable String getRegionName(Location location) {
         if (MainConfig.getInstance().isRegionBoostsEnabled()) {
-            Plugin worldGuard = EvenMoreFish.getInstance().getServer().getPluginManager().getPlugin("WorldGuard");
+            Plugin worldGuard = DeepFishing.getInstance().getServer().getPluginManager().getPlugin("WorldGuard");
             if (worldGuard != null && worldGuard.isEnabled()) {
                 RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
                 RegionQuery query = container.createQuery();
@@ -208,13 +208,13 @@ public class FishUtils {
                 for (ProtectedRegion region : set) {
                     return region.getId(); // Return the first region found
                 }
-            } else if (EvenMoreFish.getInstance().getServer().getPluginManager().isPluginEnabled("RedProtect")) {
+            } else if (DeepFishing.getInstance().getServer().getPluginManager().isPluginEnabled("RedProtect")) {
                 Region region = RedProtect.get().getAPI().getRegion(location);
                 if (region != null) {
                     return region.getName();
                 }
             } else {
-                EvenMoreFish.getInstance().getLogger().warning("Please install WorldGuard or RedProtect to use region-boosts.");
+                DeepFishing.getInstance().getLogger().warning("Please install WorldGuard or RedProtect to use region-boosts.");
             }
         }
         return null; // Return null if no region is found or no region plugin is enabled
@@ -236,7 +236,7 @@ public class FishUtils {
     }
 
     public static @NotNull String translateColorCodes(String message) {
-        return EvenMoreFish.getAdapter().translateColorCodes(message);
+        return DeepFishing.getAdapter().translateColorCodes(message);
     }
 
     //gets the item with a custom texture
@@ -382,7 +382,7 @@ public class FishUtils {
      */
     public static boolean isBaitObject(ItemStack item) {
         if (item.getItemMeta() != null) {
-            return NbtUtils.hasKey(item, NbtKeys.EMF_BAIT);
+            return NbtUtils.hasKey(item, NbtKeys.DF_BAIT);
         }
 
         return false;
@@ -412,13 +412,13 @@ public class FishUtils {
         // Get the key and check if null
         NamespacedKey key = NamespacedKey.fromString(keyString);
         if (key == null) {
-            EvenMoreFish.getInstance().getLogger().severe(keyString + " is not a valid biome.");
+            DeepFishing.getInstance().getLogger().severe(keyString + " is not a valid biome.");
             return null;
         }
         // Get the biome and check if null
         Biome biome = Registry.BIOME.get(key);
         if (biome == null) {
-            EvenMoreFish.getInstance().getLogger().severe(keyString + " is not a valid biome.");
+            DeepFishing.getInstance().getLogger().severe(keyString + " is not a valid biome.");
             return null;
         }
         return biome;
