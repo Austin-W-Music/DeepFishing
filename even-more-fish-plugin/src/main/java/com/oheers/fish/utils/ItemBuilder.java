@@ -1,7 +1,7 @@
-package com.oheers.fish.utils;
+package com.Austin-W-Music.fish.utils;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -67,10 +67,10 @@ public class ItemBuilder {
         ItemStack stack = new ItemStack(this.material);
         FishUtils.editMeta(stack, meta -> {
             if (this.display != null) {
-                meta.setDisplayName(EvenMoreFish.getAdapter().createMessage(this.display).getLegacyMessage());
+                meta.setDisplayName(DeepFishing.getAdapter().createMessage(this.display).getLegacyMessage());
             }
             if (!this.lore.isEmpty()) {
-                meta.setLore(EvenMoreFish.getAdapter().createMessage(this.lore).getLegacyListMessage());
+                meta.setLore(DeepFishing.getAdapter().createMessage(this.lore).getLegacyListMessage());
             }
         });
         if (this.glowing) {
