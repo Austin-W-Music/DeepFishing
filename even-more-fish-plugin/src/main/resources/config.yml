@@ -12,7 +12,7 @@ locale: en
 # Only relevant if you use vault
 decimal-locale: en_US
 
-# Should EMF fish only be given during a competition?
+# Should DF fish only be given during a competition?
 fish-only-in-competition: false
 
 # Should competition player requirements respect vanished players?
@@ -31,12 +31,12 @@ database:
   # (the port 3306 is automatically added in by default, if different: specify with address:port)
   address: localhost
   # The name of the database to store fish data in
-  database: evenmorefish
+  database: deepfishing
   # The table prefix for the database.
   # WARNING: Changing this will create new tables in the database.
   # Only use this during first setup or before migrations.
   # (Or after, but only if you know what you're doing).
-  table-prefix: "emf_"
+  table-prefix: "df_"
   # Login information
   username: root
   password: ''
@@ -71,24 +71,24 @@ economy:
 # you can use like: SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20 SOLID
 barstyle: 'SEGMENTED_10'
 
-# Requires that the fishing rod to have the "emf-rod-nbt" value in order to catch custom fish defined in fish.yml.
-# This allows you to sell rods that will be the only ones able to catch EvenMoreFish fish.
+# Requires that the fishing rod to have the "df-rod-nbt" value in order to catch custom fish defined in fish.yml.
+# This allows you to sell rods that will be the only ones able to catch DeepFishing fish.
 require-nbt-rod: false
 
-# This defines the item given with the "/emf admin rod-nbt -p:Playername" command. It uses the same formatting as the fish
+# This defines the item given with the "/df admin rod-nbt -p:Playername" command. It uses the same formatting as the fish
 # and baits in fish & baits .yml files.
 nbt-rod-item:
   item:
     # This needs to be FISHING_ROD
     material: FISHING_ROD
-    displayname: "&eEvenMoreFish Fishing Rod"
+    displayname: "&7&lDeep&9&lFishing &7&lRod"
   glowing: true
   lore:
     - ""
     - "&7Catch &ecustom &7fish using this"
     - "&7fishing rod."
 
-# Should the user need emf.use_rod permission in order to catch default custom fish defined in fish.yml. This requires
+# Should the user need df.use_rod permission in order to catch default custom fish defined in fish.yml. This requires
 # Vault and a permission manager such as LuckPerms.
 requires-fishing-permission: false
 
@@ -96,14 +96,14 @@ requires-fishing-permission: false
 # the starfish into a beacon.
 block-crafting: true
 
-# /emf shop configuration. If you wish to change the layout, please look at the guis.yml file.
+# /df shop configuration. If you wish to change the layout, please look at the guis.yml file.
 sell-gui:
   # Should the items be dropped(false) or sold(true) when a player exits an inventory?
   sell-over-drop: false
 
 # Uncomment the below section to enable these feature. They sett the plugin to only give custom fish when users are
 # in a list of set defined regions (this requires the worldguard/redprotect plugin) and/or in a list of set defined
-# worlds. EvenMoreFish automatically detects your protection plugin so it's important you don't run both at once.
+# worlds. DeepFishing automatically detects your protection plugin so it's important you don't run both at once.
 # Note- Changing this value requires a SERVER RESTART NOT A RELOAD.
 # Uncomment the below section to enable these feature.
 #allowed-regions:
@@ -165,15 +165,15 @@ give-straight-to-inventory: false
 
 # Customize the plugin's command. Requires a server restart to take effect.
 command:
-  # The /emf admin shortcut command
+  # The /df admin shortcut command
   admin-shortcut:
     enabled: true
-    name: "emfa"
+    name: "dfa"
   # The plugin's main command
-  main: "emf"
+  main: "df"
   # Aliases for the main command
   aliases:
-    - "evenmorefish"
+    - "deepfishing"
 
 # Customizable sets of biomes for fish.yml configuration
 biome-sets:
