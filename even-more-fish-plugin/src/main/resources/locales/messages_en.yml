@@ -1,11 +1,11 @@
-# If a message contains EvenMoreFish placeholders, e.g. {player} or {rarity} it also supports placeholderapi placeholders.
+# If a message contains DeepFishing placeholders, e.g. {player} or {rarity} it also supports placeholderapi placeholders.
 
 # Important: Read the following if you are on a Paper server.
 # These messages are able to support the MiniMessage format (in strict mode) if you are on a Paper server.
 # You are able to mix both formats on the same line, however this is not recommended.
 # Here are the MiniMessage Docs for help with using MiniMessage: https://docs.advntr.dev/minimessage/format.html
 
-# Sent to players when they fish an EvenMoreFish fish
+# Sent to players when they fish an DeepFishing fish
 fish-caught: "&l{player} &rhas fished a {rarity_colour}{length}cm &l{rarity} {rarity_colour}{fish}!"
 # By setting a fish's minimum-length to less than 0, you can create a lengthless fish. This is used when a player fishes a lengthless fish.
 lengthless-fish-caught: "&l{player} &rhas fished a {rarity_colour}&l{rarity} {rarity_colour}{fish}!"
@@ -54,11 +54,11 @@ bossbar:
   remaining: "left"
 
 # The prefix shown in commands. Keeping the space in is recommended.
-prefix-regular: "&a[EvenMoreFish] "
+prefix-regular: "&a[&7&lDeep&9&lFishing&a] "
 # The prefix shown in admin commands.
-prefix-admin: "&c[EvenMoreFish] "
+prefix-admin: "&c[&7&lDeep&9&lFishing&c] "
 # The prefix shown when errors occur e.g. no permission to run a command.
-prefix-error: "&c[EvenMoreFish] "
+prefix-error: "&c[&7&lDeep&9&lFishing&c] "
 
 # This is the format of the lore given to fish when they're caught.
 # {custom-lore} is specified in the fish.yml under the lore: section, if the fish has a lore, the lore's lines will
@@ -89,13 +89,13 @@ single-winner: "&r{player} has won the competition for {type}. Congratulations!"
 total-players: "&rThere are a total of {amount} player(s) in the leaderboard."
 # The number of positions shown in the leaderboard - can't be less than 1.
 leaderboard-count: 5
-# If the player doesn't appear on /emf top, should their position be displayed at the bottom?
+# If the player doesn't appear on /df top, should their position be displayed at the bottom?
 always-show-pos: true
 # Sent to players when nobody got a record during a competition
 no-winners: "&rThere were no fishing records."
 # When an individual player didn't get a record
 no-record: "&rYou didn't catch any fish."
-# Sent when an admin tries to start a competition where the type doesn't exist e.g. /emf admin competition start 600 ABCDEFGH
+# Sent when an admin tries to start a competition where the type doesn't exist e.g. /df admin competition start 600 ABCDEFGH
 invalid-type: "&rThat isn't a type of competition type, available types: MOST_FISH, LARGEST_FISH, SPECIFIC_FISH"
 # Sent to all online players when not enough players are on to start a competition
 not-enough-players: "&rThere's not enough players online to start the scheduled fishing competition."
@@ -111,11 +111,11 @@ time-alert: "&rThere is {time_formatted} left on the competition for {type}"
 # , – indicate where to put the grouping separator
 sell-price-format: "$#,##0.0"
 
-# The message sent to players when they've sold their fish in the /emf shop
+# The message sent to players when they've sold their fish in the /df shop
 fish-sale: "&rYou've sold &a{amount} &ffish for &a{sell-price}&f."
 
 # Help messages
-# General help (/emf help) - permission node dependant commands will only show if they are formatted with the forward-slash.
+# General help (/df help) - permission node dependant commands will only show if they are formatted with the forward-slash.
 help-format: "[noPrefix]&b{command} &e- {description}"
 
 help-general:
@@ -134,17 +134,17 @@ help-list:
   fish: "[noPrefix]Display all fish in a specific rarity."
   rarities: "[noPrefix]Display all rarities."
 
-# Competition help (/emf admin competition help)
+# Competition help (/df admin competition help)
 help-competition:
   start: "[noPrefix]Starts a competition of a specified duration"
   end: "[noPrefix]Ends the current competition (if there is one)"
-# Admin help (/emf admin help)
+# Admin help (/df admin help)
 help-admin:
   bait: "[noPrefix]Gives baits to a player."
   competition: "[noPrefix]Starts or stops a competition"
   clearbaits: "[noPrefix]Removes all applied baits from a fishing rod."
   fish: "[noPrefix]Gives a fish to a player."
-  nbt-rod: "[noPrefix]Gives a custom NBT rod to a player required for catching EMF fish."
+  nbt-rod: "[noPrefix]Gives a custom NBT rod to a player required for catching DF fish."
   reload: "[noPrefix]Reloads the plugin's config files."
   migrate: "[noPrefix]Migrate the database from Legacy (V2) to V3"
   addons: "[noPrefix]Display all addons."
@@ -152,17 +152,17 @@ help-admin:
   version: "[noPrefix]Displays plugin information."
   rawitem: "[noPrefix]Displays the item in your main hand as raw NBT."
 
-# Shown when the emf %emf_competition_place_player_*% placeholder requests a position in the leaderboard that doesn't exist
+# Shown when the df %emf_competition_place_player_*% placeholder requests a position in the leaderboard that doesn't exist
 no-player-in-place: "Start fishing to take this place"
-# Shown when the emf %emf_competition_place_fish_*% placeholder requests a position in the leaderboard that doesn't exist
+# Shown when the df %emf_competition_place_fish_*% placeholder requests a position in the leaderboard that doesn't exist
 no-fish-in-place: "Start fishing to take this place"
-# Shown when the emf %emf_competition_place_size_*% placeholder requests a position in the leaderboard that doesn't exist
+# Shown when the df %emf_competition_place_size_*% placeholder requests a position in the leaderboard that doesn't exist
 no-size-in-place: "Start fishing to take this place"
-# Shown when the emf %emf_competition_place_player_*% placeholder is used when there's no competition running
+# Shown when the df %emf_competition_place_player_*% placeholder is used when there's no competition running
 no-competition-running: "No competition running right now."
-# Shown when the emf %emf_competition_place_fish_*% placeholder is used when there's no competition running
+# Shown when the df %emf_competition_place_fish_*% placeholder is used when there's no competition running
 no-competition-running-fish: "No competition running right now."
-# Shown when the emf %emf_competition_place_size_*% placeholder is used when there's no competition running
+# Shown when the df %emf_competition_place_size_*% placeholder is used when there's no competition running
 no-competition-running-size: "No competition running right now."
 
 # HOw should %emf_custom_fishing_status% be formatted?
@@ -196,7 +196,7 @@ bait-survival-limited: "&rYou must be in &nsurvival or adventure mode&r to apply
 # Sent when someone tries to merge a baited rod into an unbaited rod
 bait-rod-protection: "&rProtected your baited fishing rod. If you are trying to repair it, please put it in the first slot instead."
 
-# Shown when /emf toggle is run, to turn off and on respectively.
+# Shown when /df toggle is run, to turn off and on respectively.
 toggle-off: "&rYou will no longer catch custom fish."
 toggle-on: "&rYou will now catch custom fish."
 
@@ -204,23 +204,23 @@ toggle-on: "&rYou will now catch custom fish."
 place-fish-blocked: "&rYou cannot place this fish."
 
 admin:
-  # Opens an /emf shop for another player
+  # Opens an /df shop for another player
   open-fish-shop: "&rOpened a shop inventory for {player}."
   # When a fish is given to a player
   given-player-fish: "&rYou have given {player} a {fish}."
   # When a bait is given to a player
   given-player-bait: "&rYou have given {player} a {bait}."
-  # When an admin runs /emf admin bait without a bait name.
+  # When an admin runs /df admin bait without a bait name.
   no-bait-specified: "&rYou must specify a bait name."
-  # When the admin tries the command /emf admin clearbaits whe not holding a fishing rod.
+  # When the admin tries the command /df admin clearbaits whe not holding a fishing rod.
   must-be-holding-rod: "&rYou need to be holding a fishing rod to run that command."
-  # When /emf admin clearbaits command is run.
+  # When /df admin clearbaits command is run.
   all-baits-cleared: "&rYou have removed all {amount} baits from your fishing rod."
-  # /emf admin clearbaits is run, but there are no baits on the rod.
+  # /df admin clearbaits is run, but there are no baits on the rod.
   no-baits-on-rod: "&rThe fishing rod does not have any baits applied."
 
   # When economy is disabled for the plugin
-  economy-disabled: "&rEvenMoreFish's economy features are disabled."
+  economy-disabled: "&rDeepFishing's economy features are disabled."
 
   # When the specified player can't be found when using -p: parameter.
   player-not-found: "&r{player} could not be found."
@@ -231,16 +231,16 @@ admin:
   # When a command cannot be run from the console
   cannot-run-on-console: "&rCommand cannot be run from console."
 
-  # Sent when a competition is already running when using /emf admin competition start
+  # Sent when a competition is already running when using /df admin competition start
   competition-already-running: "&rThere's already a competition running."
   # When an invalid competition type is provided
   competition-type-invalid: "&rThat isn't a type of competition type, available types: MOST_FISH, LARGEST_FISH, SPECIFIC_FISH"
   # When an invalid competition id is provided
   competition-id-invalid: "&rThat isn't a valid competition id."
 
-  # When the command /emf admin nbt-rod is run.
+  # When the command /df admin nbt-rod is run.
   nbt-rod-given: "&rYou have given {player} a NBT rod, make sure \"require-nbt-rod\" is set to &atrue &rfor this to be different from any other fishing rod."
-  # When the command /emf admin nbt-rod is run but require-rod-nbt is false in the config.yml file.
+  # When the command /df admin nbt-rod is run but require-rod-nbt is false in the config.yml file.
   nbt-not-required: "&rChange \"require-nbt-rod\" to true in order to use this feature."
 
   # When there's a spigot update available, don't translate the URL otherwise it won't direct to the correct page.
