@@ -1,5 +1,5 @@
 ## The files
-As of EvenMoreFish 2.0, all rarity configs are located in `plugins/EvenMoreFish/rarities`.
+As of DeepFishing 1.0, all rarity configs are located in `plugins/DeepFishing/rarities`.
 
 ## Creating Rarities
 To create a new rarity, you need to create a new yml file in the rarities folder.
@@ -20,4 +20,4 @@ Doing either of these will prevent the rarity from being registered into the plu
 An example config will always be available inside your rarities folder, and contains every possible config option.
 This file will reset every time the plugin loads, meaning it will always be up to date.
 
-You can view this example file [here](https://github.com/Oheers/EvenMoreFish/blob/master/even-more-fish-plugin/src/main/resources/rarities/_example.yml)
+You can view this example file [here](https://github.com/Austin-W-Music/DeepFishing/blob/master/DeepFishing-plugin/src/main/resources/rarities/_example.yml)
