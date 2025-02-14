@@ -1,11 +1,11 @@
-package com.oheers.fish.permissions;
+package com.Austin-W-Music.fish.permissions;
 
 public class AdminPerms {
     private AdminPerms() {
         throw new UnsupportedOperationException();
     }
 
-    public static final String ADMIN = "emf.admin";
-    public static final String UPDATE_NOTIFY = "emf.admin.update.notify";
-    public static final String MIGRATE = "emf.admin.migrate";
+    public static final String ADMIN = "df.admin";
+    public static final String UPDATE_NOTIFY = "df.admin.update.notify";
+    public static final String MIGRATE = "df.admin.migrate";
 }
