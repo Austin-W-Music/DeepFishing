@@ -1,8 +1,8 @@
-package com.oheers.fish.database;
+package com.Austin-W-Music.fish.database;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.config.MainConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.SQLDialect;
 
@@ -59,7 +59,7 @@ public class DatabaseUtil {
 
     public static void writeDbVerbose(final String message) {
         if (MainConfig.getInstance().doDBVerbose()) {
-            EvenMoreFish.getInstance().getLogger().info(() -> message);
+            DeepFishing.getInstance().getLogger().info(() -> message);
         }
     }
 
