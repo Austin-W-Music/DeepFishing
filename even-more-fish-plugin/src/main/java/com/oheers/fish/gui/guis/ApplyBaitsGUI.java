@@ -1,18 +1,18 @@
-package com.oheers.fish.gui.guis;
+package com.Austin-W-Music.fish.gui.guis;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.baits.ApplicationResult;
-import com.oheers.fish.baits.Bait;
-import com.oheers.fish.baits.BaitManager;
-import com.oheers.fish.baits.BaitNBTManager;
-import com.oheers.fish.config.GUIConfig;
-import com.oheers.fish.config.GUIFillerConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.exceptions.MaxBaitReachedException;
-import com.oheers.fish.exceptions.MaxBaitsReachedException;
-import com.oheers.fish.gui.GUIUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.baits.ApplicationResult;
+import com.Austin-W-Music.fish.baits.Bait;
+import com.Austin-W-Music.fish.baits.BaitManager;
+import com.Austin-W-Music.fish.baits.BaitNBTManager;
+import com.Austin-W-Music.fish.config.GUIConfig;
+import com.Austin-W-Music.fish.config.GUIFillerConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.exceptions.MaxBaitReachedException;
+import com.Austin-W-Music.fish.exceptions.MaxBaitsReachedException;
+import com.Austin-W-Music.fish.gui.GUIUtils;
 import de.themoep.inventorygui.GuiStorageElement;
 import de.themoep.inventorygui.InventoryGui;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class ApplyBaitsGUI implements EMFGUI {
+public class ApplyBaitsGUI implements DFGUI {
 
     private final InventoryGui gui;
     private final Player player;
@@ -44,7 +44,7 @@ public class ApplyBaitsGUI implements EMFGUI {
 
         this.gui = GUIUtils.createGUI(section);
         if (section == null) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "Could not find the config for the Apply Baits GUI!");
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "Could not find the config for the Apply Baits GUI!");
             return;
         }
 
@@ -89,7 +89,7 @@ public class ApplyBaitsGUI implements EMFGUI {
             // Try to apply all the baits.
             try {
                 result = BaitNBTManager.applyBaitedRodNBT(handItem, bait, item.getAmount());
-                EvenMoreFish.getInstance().incrementMetricBaitsApplied(item.getAmount());
+                DeepFishing.getInstance().incrementMetricBaitsApplied(item.getAmount());
             // When a specific bait is maxed.
             } catch (MaxBaitReachedException exception) {
                 AbstractMessage message = ConfigMessage.BAITS_MAXED_ON_ROD.getMessage();
