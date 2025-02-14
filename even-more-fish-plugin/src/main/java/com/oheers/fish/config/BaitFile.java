@@ -1,6 +1,6 @@
-package com.oheers.fish.config;
+package com.Austin-W-Music.fish.config;
 
-import com.oheers.fish.EvenMoreFish;
+import com.Austin-W-Music.fish.DeepFishing;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class BaitFile extends ConfigBase {
     private static BaitFile instance = null;
 
     public BaitFile() {
-        super("baits.yml", "baits.yml", EvenMoreFish.getInstance(), false);
+        super("baits.yml", "baits.yml", DeepFishing.getInstance(), false);
         instance = this;
     }
     
