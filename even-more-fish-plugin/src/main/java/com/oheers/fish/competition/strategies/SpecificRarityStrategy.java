@@ -1,17 +1,17 @@
-package com.oheers.fish.competition.strategies;
+package com.Austin-W-Music.fish.competition.strategies;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionEntry;
-import com.oheers.fish.competition.CompetitionStrategy;
-import com.oheers.fish.competition.CompetitionType;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionEntry;
+import com.Austin-W-Music.fish.competition.CompetitionStrategy;
+import com.Austin-W-Music.fish.competition.CompetitionType;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,7 +59,7 @@ public class SpecificRarityStrategy implements CompetitionStrategy {
         message.setAmount(Integer.toString(competition.getNumberNeeded()));
         Rarity selectedRarity = competition.getSelectedRarity();
         if (selectedRarity == null) {
-            EvenMoreFish.getInstance().getLogger().warning("Null rarity found. Please check your config files.");
+            DeepFishing.getInstance().getLogger().warning("Null rarity found. Please check your config files.");
             return message;
         }
         message.setRarityColour(selectedRarity.getColour());
@@ -72,14 +72,14 @@ public class SpecificRarityStrategy implements CompetitionStrategy {
         List<Rarity> configRarities = competition.getCompetitionFile().getAllowedRarities();
 
         if (configRarities.isEmpty()) {
-            EvenMoreFish.getInstance().getLogger().severe("No allowed-rarities list found in the " + competition.getCompetitionFile().getFileName() + " competition config file.");
+            DeepFishing.getInstance().getLogger().severe("No allowed-rarities list found in the " + competition.getCompetitionFile().getFileName() + " competition config file.");
             return false;
         }
 
         competition.setNumberNeeded(competition.getCompetitionFile().getNumberNeeded());
 
         try {
-            Rarity rarity = configRarities.get(EvenMoreFish.getInstance().getRandom().nextInt(configRarities.size()));
+            Rarity rarity = configRarities.get(DeepFishing.getInstance().getRandom().nextInt(configRarities.size()));
             if (rarity != null) {
                 competition.setSelectedRarity(rarity);
                 return true;
@@ -87,13 +87,13 @@ public class SpecificRarityStrategy implements CompetitionStrategy {
             competition.setSelectedRarity(FishManager.getInstance().getRandomWeightedRarity(null, 0, null, Set.copyOf(FishManager.getInstance().getRarityMap().values())));
             return true;
         } catch (IllegalArgumentException exception) {
-            EvenMoreFish.getInstance()
+            DeepFishing.getInstance()
                     .getLogger()
                     .severe("Could not load: " + competition.getCompetitionName() + " because a random rarity could not be chosen. \nIf you need support, please provide the following information:");
-            EvenMoreFish.getInstance().getLogger().severe("rarities.size(): " + FishManager.getInstance().getRarityMap().size());
-            EvenMoreFish.getInstance().getLogger().severe("configRarities.size(): " + configRarities.size());
+            DeepFishing.getInstance().getLogger().severe("rarities.size(): " + FishManager.getInstance().getRarityMap().size());
+            DeepFishing.getInstance().getLogger().severe("configRarities.size(): " + configRarities.size());
             // Also log the exception
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, exception.getMessage(), exception);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, exception.getMessage(), exception);
             return false;
         }
     }
