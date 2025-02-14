@@ -1,7 +1,7 @@
-package com.oheers.fish.database.execute;
+package com.Austin-W-Music.fish.database.execute;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.database.connection.ConnectionFactory;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.database.connection.ConnectionFactory;
 import org.jooq.DSLContext;
 import org.jooq.conf.Settings;
 import org.jooq.impl.DSL;
@@ -25,7 +25,7 @@ public abstract class ExecuteUpdate extends ExecuteBase {
             DSLContext dslContext = getContext(connection);
             return onRunUpdate(dslContext);
         } catch (SQLException e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE,"Update execution failed", e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE,"Update execution failed", e);
             return 0;
         }
     }
@@ -41,7 +41,7 @@ public abstract class ExecuteUpdate extends ExecuteBase {
                 onRunUpdate(transactionalDsl);
             });
         } catch (SQLException e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE,"Transactional update execution failed", e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE,"Transactional update execution failed", e);
         }
     }
 
