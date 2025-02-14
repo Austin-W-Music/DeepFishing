@@ -1,14 +1,14 @@
-package com.oheers.fish.config.messages;
+package com.Austin-W-Music.fish.config.messages;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
 
 public enum PrefixType {
 
     NONE(null, null),
-    ADMIN("prefix-admin", "&c[EvenMoreFish] "),
-    DEFAULT("prefix-regular", "&a[EvenMoreFish] "),
-    ERROR("prefix-error", "&c[EvenMoreFish] ");
+    ADMIN("prefix-admin", "&c[&7Deep&9Fishing&c] "),
+    DEFAULT("prefix-regular", "&a[&7Deep&9Fishing&a] "),
+    ERROR("prefix-error", "&c[&7Deep&9Fishing&c] ");
 
     private final String id, normal;
 
@@ -31,9 +31,9 @@ public enum PrefixType {
      */
     public AbstractMessage getPrefix() {
         if (id == null) {
-            return EvenMoreFish.getAdapter().createMessage("");
+            return DeepFishing.getAdapter().createMessage("");
         } else {
-            AbstractMessage message = EvenMoreFish.getAdapter().createMessage(Messages.getInstance().getConfig().getString(id, normal));
+            AbstractMessage message = DeepFishing.getAdapter().createMessage(Messages.getInstance().getConfig().getString(id, normal));
             message.appendString("&r");
             return message;
         }
