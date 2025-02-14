@@ -1,12 +1,12 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.database.model.FishReport;
-import com.oheers.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.database.model.FishReport;
+import com.Austin-W-Music.fish.database.model.UserReport;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -31,31 +31,31 @@ public class JoinChecker implements Listener {
         }
 
 
-        EvenMoreFish.getScheduler().runTaskAsynchronously(() -> {
+        DeepFishing.getScheduler().runTaskAsynchronously(() -> {
             List<FishReport> fishReports;
 
 
-            if (EvenMoreFish.getInstance().getDatabase().hasUserLog(userUUID)) {
-                fishReports = EvenMoreFish.getInstance().getDatabase().getFishReportsForPlayer(userUUID);
+            if (DeepFishing.getInstance().getDatabase().hasUserLog(userUUID)) {
+                fishReports = DeepFishing.getInstance().getDatabase().getFishReportsForPlayer(userUUID);
             } else {
                 fishReports = new ArrayList<>();
                 //todo, bug here, if user joins, but doesn't participate in any comp, and then leaves, we get to this point again.
-                EvenMoreFish.dbVerbose(userName + " has joined for the first time, creating new data handle for them.");
+                DeepFishing.dbVerbose(userName + " has joined for the first time, creating new data handle for them.");
             }
 
 
             UserReport userReport;
 
-            userReport = EvenMoreFish.getInstance().getDatabase().readUserReport(userUUID);
+            userReport = DeepFishing.getInstance().getDatabase().readUserReport(userUUID);
             if (userReport == null) {
-                EvenMoreFish.getInstance().getDatabase().createUser(userUUID);
-                userReport = EvenMoreFish.getInstance().getDatabase().readUserReport(userUUID);
+                DeepFishing.getInstance().getDatabase().createUser(userUUID);
+                userReport = DeepFishing.getInstance().getDatabase().readUserReport(userUUID);
             }
 
             if (fishReports != null && userReport != null) {
                 DataManager.getInstance().cacheUser(userUUID, userReport, fishReports);
             } else {
-                EvenMoreFish.getInstance().getLogger().severe("Null value when fetching data for user (" + userName + "),\n" +
+                DeepFishing.getInstance().getLogger().severe("Null value when fetching data for user (" + userName + "),\n" +
                         "UserReport: " + (userReport == null) +
                         ",\nFishReports: " + (fishReports != null && !fishReports.isEmpty()));
             }
@@ -72,7 +72,7 @@ public class JoinChecker implements Listener {
             AbstractMessage startMessage = activeComp.getStartMessage();
             if (startMessage != null) {
                 startMessage.setMessage(ConfigMessage.COMPETITION_JOIN.getMessage());
-                EvenMoreFish.getScheduler().runTaskLater(() -> startMessage.send(event.getPlayer()), 20L * 3);
+                DeepFishing.getScheduler().runTaskLater(() -> startMessage.send(event.getPlayer()), 20L * 3);
             }
         }
 
@@ -93,21 +93,21 @@ public class JoinChecker implements Listener {
         }
 
 
-        EvenMoreFish.getScheduler().runTaskAsynchronously(() -> {
+        DeepFishing.getScheduler().runTaskAsynchronously(() -> {
             UUID userUUID = event.getPlayer().getUniqueId();
 
-            if (!EvenMoreFish.getInstance().getDatabase().hasUser(userUUID)) {
-                EvenMoreFish.getInstance().getDatabase().createUser(userUUID);
+            if (!DeepFishing.getInstance().getDatabase().hasUser(userUUID)) {
+                DeepFishing.getInstance().getDatabase().createUser(userUUID);
             }
 
             List<FishReport> fishReports = DataManager.getInstance().getFishReportsIfExists(userUUID);
             if (fishReports != null) {
-                EvenMoreFish.getInstance().getDatabase().writeFishReports(userUUID, fishReports);
+                DeepFishing.getInstance().getDatabase().writeFishReports(userUUID, fishReports);
             }
 
             UserReport userReport = DataManager.getInstance().getUserReportIfExists(userUUID);
             if (userReport != null) {
-                EvenMoreFish.getInstance().getDatabase().writeUserReport(userUUID, userReport);
+                DeepFishing.getInstance().getDatabase().writeUserReport(userUUID, userReport);
             }
 
             DataManager.getInstance().uncacheUser(userUUID);
