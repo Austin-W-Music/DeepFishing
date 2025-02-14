@@ -1,7 +1,7 @@
-package com.oheers.fish.exceptions;
+package com.Austin-W-Music.fish.exceptions;
 
-import com.oheers.fish.baits.ApplicationResult;
-import com.oheers.fish.baits.Bait;
+import com.Austin-W-Music.fish.baits.ApplicationResult;
+import com.Austin-W-Music.fish.baits.Bait;
 import org.jetbrains.annotations.NotNull;
 
 public class MaxBaitReachedException extends Exception {
