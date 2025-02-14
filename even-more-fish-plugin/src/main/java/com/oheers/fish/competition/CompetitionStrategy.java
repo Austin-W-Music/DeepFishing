@@ -1,10 +1,10 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
