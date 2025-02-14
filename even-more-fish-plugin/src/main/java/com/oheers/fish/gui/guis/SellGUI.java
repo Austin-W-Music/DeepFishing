@@ -1,14 +1,14 @@
-package com.oheers.fish.gui.guis;
+package com.Austin-W-Music.fish.gui.guis;
 
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.economy.Economy;
-import com.oheers.fish.config.GUIConfig;
-import com.oheers.fish.config.GUIFillerConfig;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.gui.GUIUtils;
-import com.oheers.fish.selling.SellHelper;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.economy.Economy;
+import com.Austin-W-Music.fish.config.GUIConfig;
+import com.Austin-W-Music.fish.config.GUIFillerConfig;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.gui.GUIUtils;
+import com.Austin-W-Music.fish.selling.SellHelper;
 import de.themoep.inventorygui.GuiStorageElement;
 import de.themoep.inventorygui.InventoryGui;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class SellGUI implements EMFGUI {
+public class SellGUI implements DFGUI {
 
     private final InventoryGui gui;
     private final Player player;
@@ -42,7 +42,7 @@ public class SellGUI implements EMFGUI {
         this.fishInventory = Objects.requireNonNullElseGet(fishInventory, () -> Bukkit.createInventory(null, 54));
         gui = GUIUtils.createGUI(section);
         if (section == null) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "Could not find the config for the Sell Menu GUI!");
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "Could not find the config for the Sell Menu GUI!");
             return;
         }
         // Add filler and configured elements
@@ -78,7 +78,7 @@ public class SellGUI implements EMFGUI {
     public void open() {
         gui.show(player);
         // Only start the task when the GUI is opened
-        task = EvenMoreFish.getScheduler().runTaskTimer(gui::draw, 5L, 5L);
+        task = DeepFishing.getScheduler().runTaskTimer(gui::draw, 5L, 5L);
     }
 
     public Player getPlayer() {
