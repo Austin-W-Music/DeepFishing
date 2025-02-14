@@ -1,9 +1,9 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
@@ -23,12 +23,12 @@ public class BiomeRequirementType implements RequirementType {
             configLocation = "N/A";
         }
         if (world == null) {
-            EvenMoreFish.getInstance().getLogger().severe("Could not get world for " + configLocation + ", returning false by " +
+            DeepFishing.getInstance().getLogger().severe("Could not get world for " + configLocation + ", returning false by " +
                     "default. The player may not have been given a fish if you see this message multiple times.");
             return false;
         }
         if (location == null) {
-            EvenMoreFish.getInstance().getLogger().severe("Could not get location for " + configLocation + ", returning false by " +
+            DeepFishing.getInstance().getLogger().severe("Could not get location for " + configLocation + ", returning false by " +
                     "default. The player may not have been given a fish if you see this message multiple times.");
             return false;
         }
@@ -52,12 +52,12 @@ public class BiomeRequirementType implements RequirementType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
