@@ -1,8 +1,8 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +23,7 @@ public class IRLTimeRequirementType implements RequirementType {
                 minTime = getDayMinute(split[0], 0);
                 maxTime = getDayMinute(split[1], 1440);
             } catch (ArrayIndexOutOfBoundsException exception) {
-                EvenMoreFish.getInstance().getLogger().severe(value + " is not a valid real time format. Using the defaults.");
+                DeepFishing.getInstance().getLogger().severe(value + " is not a valid real time format. Using the defaults.");
                 minTime = 0;
                 maxTime = 1440;
             }
@@ -41,12 +41,12 @@ public class IRLTimeRequirementType implements RequirementType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
     /**
@@ -63,7 +63,7 @@ public class IRLTimeRequirementType implements RequirementType {
         try {
             return (Integer.parseInt(time[0]) * 60) + Integer.parseInt(time[1]);
         } catch (IndexOutOfBoundsException | NumberFormatException exception) {
-            EvenMoreFish.getInstance().getLogger().severe("FATAL error reading " + HHMMFormat + ", resorting to default value of " + fallback);
+            DeepFishing.getInstance().getLogger().severe("FATAL error reading " + HHMMFormat + ", resorting to default value of " + fallback);
             return fallback;
         }
     }
