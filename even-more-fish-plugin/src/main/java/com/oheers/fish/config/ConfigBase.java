@@ -1,6 +1,6 @@
-package com.oheers.fish.config;
+package com.Austin-W-Music.fish.config;
 
-import com.oheers.fish.EvenMoreFish;
+import com.Austin-W-Music.fish.DeepFishing;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
 import dev.dejvokep.boostedyaml.settings.Settings;
@@ -148,7 +148,7 @@ public class ConfigBase {
         try {
             getConfig().save();
         } catch (IOException exception) {
-            EvenMoreFish.getInstance().getLogger().warning("Failed to save " + getFileName());
+            DeepFishing.getInstance().getLogger().warning("Failed to save " + getFileName());
         }
     }
 
@@ -159,7 +159,7 @@ public class ConfigBase {
         try {
             getConfig().update();
         } catch (IOException exception) {
-            EvenMoreFish.getInstance().getLogger().warning("Failed to update " + getFileName());
+            DeepFishing.getInstance().getLogger().warning("Failed to update " + getFileName());
         }
     }
 
