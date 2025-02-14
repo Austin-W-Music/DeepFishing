@@ -1,14 +1,14 @@
-package com.oheers.fish.fishing.items;
+package com.Austin-W-Music.fish.fishing.items;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.api.requirement.Requirement;
-import com.oheers.fish.api.reward.Reward;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.exceptions.InvalidFishException;
-import com.oheers.fish.selling.WorthNBT;
-import com.oheers.fish.utils.ItemFactory;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.api.requirement.Requirement;
+import com.Austin-W-Music.fish.api.reward.Reward;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.exceptions.InvalidFishException;
+import com.Austin-W-Music.fish.selling.WorthNBT;
+import com.Austin-W-Music.fish.utils.ItemFactory;
 import de.tr7zw.changeme.nbtapi.NBT;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -198,7 +198,7 @@ public class Fish implements Cloneable {
             int range = (int) ((maxSize - minSize) * 10);
 
             // Generate a random integer within the range (0 to range-1)
-            int randomValue = EvenMoreFish.getInstance().getRandom().nextInt(range + 1); // nextInt(bound) ensures a positive value
+            int randomValue = DeepFishing.getInstance().getRandom().nextInt(range + 1); // nextInt(bound) ensures a positive value
 
             // Calculate the length, scaling back down by dividing by 10
             this.length = (float) (randomValue + minSize * 10) / 10;
@@ -272,7 +272,7 @@ public class Fish implements Cloneable {
 
         Runnable fallback = () -> {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1));
-            EvenMoreFish.getInstance().getLogger().warning("Invalid potion effect specified. Defaulting to Speed 2 for 5 seconds.");
+            DeepFishing.getInstance().getLogger().warning("Invalid potion effect specified. Defaulting to Speed 2 for 5 seconds.");
         };
 
         // if it's formatted wrong, it'll just give the player this as a stock effect
@@ -294,10 +294,10 @@ public class Fish implements Cloneable {
         try {
             player.addPotionEffect(new PotionEffect(effect, time, amplitude));
         } catch (IllegalArgumentException e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! There was an error adding the effect from the " + this.name + " fish.");
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! Check your config files and ensure spelling of the effect name is correct.");
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! If the problem persists, ask for help on the support discord server.");
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! There was an error adding the effect from the " + this.name + " fish.");
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! Check your config files and ensure spelling of the effect name is correct.");
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "ATTENTION! If the problem persists, ask for help on the support discord server.");
         }
     }
 
@@ -321,7 +321,7 @@ public class Fish implements Cloneable {
         List<String> loreOverride = section.getStringList("lore-override");
         AbstractMessage newLoreLine;
         if (!loreOverride.isEmpty()) {
-            newLoreLine = EvenMoreFish.getAdapter().createMessage(loreOverride);
+            newLoreLine = DeepFishing.getAdapter().createMessage(loreOverride);
         } else {
             newLoreLine = ConfigMessage.FISH_LORE.getMessage();
         }
@@ -354,7 +354,7 @@ public class Fish implements Cloneable {
         newLoreLine.setRarity(this.rarity.getLorePrep());
 
         List<String> newLore = newLoreLine.getLegacyListMessage();
-        if (getFishermanPlayer() != null && EvenMoreFish.getInstance().isUsingPAPI()) {
+        if (getFishermanPlayer() != null && DeepFishing.getInstance().isUsingPAPI()) {
             return newLore.stream().map(l -> PlaceholderAPI.setPlaceholders(getFishermanPlayer(), l)).collect(Collectors.toList());
         }
 
@@ -370,7 +370,7 @@ public class Fish implements Cloneable {
         // Checks if the player has actually set rewards for an eat event
         if (!configRewards.isEmpty()) {
             // Informs the main class to load up an PlayerItemConsumeEvent listener
-            EvenMoreFish.getInstance().setCheckingEatEvent(true);
+            DeepFishing.getInstance().setCheckingEatEvent(true);
             this.eventType = "eat";
             actionRewards = new ArrayList<>();
 
@@ -410,7 +410,7 @@ public class Fish implements Cloneable {
         // Checks if the player has actually set rewards for an interact event
         if (!configRewards.isEmpty()) {
             // Informs the main class to load up an PlayerItemConsumeEvent listener
-            EvenMoreFish.getInstance().setCheckingIntEvent(true);
+            DeepFishing.getInstance().setCheckingIntEvent(true);
             this.eventType = "int";
             actionRewards = new ArrayList<>();
 
