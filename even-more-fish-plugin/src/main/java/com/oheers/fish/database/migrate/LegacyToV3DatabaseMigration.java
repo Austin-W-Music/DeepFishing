@@ -1,13 +1,13 @@
-package com.oheers.fish.database.migrate;
+package com.Austin-W-Music.fish.database.migrate;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.config.messages.PrefixType;
-import com.oheers.fish.database.Database;
-import com.oheers.fish.database.connection.MigrationManager;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.config.messages.PrefixType;
+import com.Austin-W-Music.fish.database.Database;
+import com.Austin-W-Music.fish.database.connection.MigrationManager;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.impl.DSL;
@@ -32,7 +32,7 @@ public class LegacyToV3DatabaseMigration {
     }
     
     /**
-     * This causes a renaming of the table "Fish2" to "emf_fish", no data internally changes, but it's good to have a clean
+     * This causes a renaming of the table "Fish2" to "df_fish", no data internally changes, but it's good to have a clean
      * format for all the tables and to have a more descriptive name for this stuff.
      */
     private void translateFishDataV2() {
@@ -130,32 +130,32 @@ public class LegacyToV3DatabaseMigration {
      */
     public void migrate(CommandSender initiator) {
         if (!migrationManager.usingV2()) {
-            AbstractMessage msg = EvenMoreFish.getAdapter().createMessage("EvenMoreFish is already using the latest V3 database engine.");
+            AbstractMessage msg = DeepFishng.getAdapter().createMessage("DeepFishing is already using the latest V3 database engine.");
             msg.prependMessage(PrefixType.ERROR.getPrefix());
             msg.send(initiator);
             return;
         }
         
-        EvenMoreFish.getInstance().getLogger().info(() -> initiator.getName() + " has begun the migration to EMF database V3 from V2.");
-        AbstractMessage msg = EvenMoreFish.getAdapter().createMessage("Beginning conversion to V3 database engine.");
+        DeepFishing.getInstance().getLogger().info(() -> initiator.getName() + " has begun the migration to DF database V3 from V2.");
+        AbstractMessage msg = DeepFishng.getAdapter().createMessage("Beginning conversion to V3 database engine.");
         msg.prependMessage(PrefixType.ADMIN.getPrefix());
         msg.send(initiator);
         
-        File oldDataFolder = new File(EvenMoreFish.getInstance().getDataFolder(), "data");
-        File dataFolder = new File(EvenMoreFish.getInstance().getDataFolder(), "data-archived");
+        File oldDataFolder = new File(DeepFishing.getInstance().getDataFolder(), "data");
+        File dataFolder = new File(DeepFishing.getInstance().getDataFolder(), "data-archived");
         
         if (oldDataFolder.renameTo(dataFolder)) {
-            AbstractMessage message = EvenMoreFish.getAdapter().createMessage("Archived /data/ folder.");
+            AbstractMessage message = DeepFishing.getAdapter().createMessage("Archived /data/ folder.");
             message.prependMessage(PrefixType.ADMIN.getPrefix());
             message.send(initiator);
         } else {
-            AbstractMessage message = EvenMoreFish.getAdapter().createMessage("Failed to archive /data/ folder. Cancelling migration. [No further information]");
+            AbstractMessage message = DeepFishing.getAdapter().createMessage("Failed to archive /data/ folder. Cancelling migration. [No further information]");
             message.prependMessage(PrefixType.ADMIN.getPrefix());
             message.send(initiator);
             return;
         }
         
-        AbstractMessage fishReportMSG = EvenMoreFish.getAdapter().createMessage("Beginning FishReport migrations. This may take a while.");
+        AbstractMessage fishReportMSG = DeepFishing.getAdapter().createMessage("Beginning FishReport migrations. This may take a while.");
         fishReportMSG.prependMessage(PrefixType.ADMIN.getPrefix());
         fishReportMSG.send(initiator);
         
@@ -177,27 +177,27 @@ public class LegacyToV3DatabaseMigration {
                 database.createUser(playerUUID);
                 translateFishReportsV2(playerUUID, reports);
                 
-                AbstractMessage migratedMSG = EvenMoreFish.getAdapter().createMessage("Migrated " + reports.size() + " fish for: " + playerUUID);
+                AbstractMessage migratedMSG = DeepFishing.getAdapter().createMessage("Migrated " + reports.size() + " fish for: " + playerUUID);
                 migratedMSG.prependMessage(PrefixType.ADMIN.getPrefix());
                 migratedMSG.send(initiator);
             }
             
         } catch (NullPointerException | FileNotFoundException exception) {
-            AbstractMessage message = EvenMoreFish.getAdapter().createMessage("Fatal error whilst upgrading to V3 database engine.");
+            AbstractMessage message = DeepFishing.getAdapter().createMessage("Fatal error whilst upgrading to V3 database engine.");
             message.prependMessage(PrefixType.ERROR.getPrefix());
             message.send(initiator);
             
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "Critical SQL/interruption error whilst upgrading to v3 engine.", exception);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "Critical SQL/interruption error whilst upgrading to v3 engine.", exception);
         } catch (IOException e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
             throw new RuntimeException(e);
         }
         
-        AbstractMessage migratedMSG = EvenMoreFish.getAdapter().createMessage("Migration completed. Your database is now using the V3 database engine: to complete the migration, it is recommended to restart your server.");
+        AbstractMessage migratedMSG = DeepFishing.getAdapter().createMessage("Migration completed. Your database is now using the V3 database engine: to complete the migration, it is recommended to restart your server.");
         migratedMSG.prependMessage(PrefixType.ADMIN.getPrefix());
         migratedMSG.send(initiator);
         
-        AbstractMessage thankyou = EvenMoreFish.getAdapter().createMessage("Now that migration is complete, you will be able to use functionality in upcoming" +
+        AbstractMessage thankyou = DeepFishing.getAdapter().createMessage("Now that migration is complete, you will be able to use functionality in upcoming" +
             " updates such as quests, deliveries and a fish log. - Oheers");
         thankyou.prependMessage(PrefixType.ERROR.getPrefix());
         thankyou.send(initiator);
