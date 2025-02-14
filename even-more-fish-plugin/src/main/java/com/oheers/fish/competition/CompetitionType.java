@@ -1,7 +1,7 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.competition.strategies.*;
-import com.oheers.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.competition.strategies.*;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
 import org.jetbrains.annotations.Nullable;
 
 
