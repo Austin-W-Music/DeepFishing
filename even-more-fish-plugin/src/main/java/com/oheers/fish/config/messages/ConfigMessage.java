@@ -1,7 +1,7 @@
-package com.oheers.fish.config.messages;
+package com.Austin-W-Music.fish.config.messages;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -62,7 +62,7 @@ public enum ConfigMessage {
 
 
 
-    ECONOMY_DISABLED("&rEvenMoreFish's economy features are disabled.", PrefixType.ERROR, false, false, "admin.economy-disabled"),
+    ECONOMY_DISABLED("&rDeepFishing's economy features are disabled.", PrefixType.ERROR, false, false, "admin.economy-disabled"),
 
     FISH_CANT_BE_PLACED("&rYou cannot place this fish.", PrefixType.ERROR, true, true, "place-fish-blocked"),
     FISH_CAUGHT("&r&l{player} &rhas fished a {rarity_colour}{length}cm &l{rarity} {rarity_colour}{fish}!", PrefixType.NONE, true, true, "fish-caught"),
@@ -301,7 +301,7 @@ public enum ConfigMessage {
     }
 
     public AbstractMessage getMessage() {
-        AbstractMessage message = EvenMoreFish.getAdapter().createMessage("");
+        AbstractMessage message = DeepFishing.getAdapter().createMessage("");
         if (isListForm()) {
             List<String> list = getStringList(getNormalList(), getId());
             for (String line : list) {
@@ -340,10 +340,10 @@ public enum ConfigMessage {
         Messages messageConfig = Messages.getInstance();
         String string = messageConfig.getConfig().getString(id, null);
         if (string == null) {
-            EvenMoreFish.getInstance().getLogger().warning("No valid value in messages.yml for: " + id + ". Attempting to insert the default value.");
+            DeepFishing.getInstance().getLogger().warning("No valid value in messages.yml for: " + id + ". Attempting to insert the default value.");
             messageConfig.getConfig().set(id, normal);
             messageConfig.save();
-            EvenMoreFish.getInstance().getLogger().info("Filled " + id + " in your messages.yml with the default value.");
+            DeepFishing.getInstance().getLogger().info("Filled " + id + " in your messages.yml with the default value.");
             return normal;
         }
         return string;
@@ -360,10 +360,10 @@ public enum ConfigMessage {
         Messages messageConfig = Messages.getInstance();
         List<String> list = messageConfig.getConfig().getStringList(id);
         if (list.isEmpty()) {
-            EvenMoreFish.getInstance().getLogger().warning("No valid value in messages.yml for: " + id + ". Attempting to insert the default value.");
+            DeepFishing.getInstance().getLogger().warning("No valid value in messages.yml for: " + id + ". Attempting to insert the default value.");
             messageConfig.getConfig().set(id, null);
             messageConfig.save();
-            EvenMoreFish.getInstance().getLogger().info("Filled " + id + " in your messages.yml with the default value.");
+            DeepFishing.getInstance().getLogger().info("Filled " + id + " in your messages.yml with the default value.");
             return normal;
         }
         return list;
