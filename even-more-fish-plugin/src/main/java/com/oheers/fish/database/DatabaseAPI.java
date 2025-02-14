@@ -1,9 +1,9 @@
-package com.oheers.fish.database;
+package com.Austin-W-Music.fish.database;
 
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.database.model.FishReport;
-import com.oheers.fish.database.model.UserReport;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.database.model.FishReport;
+import com.Austin-W-Music.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Timestamp;
