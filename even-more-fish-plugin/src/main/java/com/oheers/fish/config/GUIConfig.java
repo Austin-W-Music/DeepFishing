@@ -1,6 +1,6 @@
-package com.oheers.fish.config;
+package com.Austin-W-Music.fish.config;
 
-import com.oheers.fish.EvenMoreFish;
+import com.Austin-W-Music.fish.DeepFishing;
 import dev.dejvokep.boostedyaml.settings.updater.UpdaterSettings;
 
 public class GUIConfig extends ConfigBase {
@@ -8,7 +8,7 @@ public class GUIConfig extends ConfigBase {
     private static GUIConfig instance = null;
 
     public GUIConfig() {
-        super("guis.yml", "guis.yml", EvenMoreFish.getInstance(), true);
+        super("guis.yml", "guis.yml", DeepFishing.getInstance(), true);
         instance = this;
     }
     
