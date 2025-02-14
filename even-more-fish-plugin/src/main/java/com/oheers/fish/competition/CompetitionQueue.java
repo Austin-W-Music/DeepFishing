@@ -1,9 +1,9 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.FileUtil;
-import com.oheers.fish.competition.configs.CompetitionConversions;
-import com.oheers.fish.competition.configs.CompetitionFile;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.FileUtil;
+import com.Austin-W-Music.fish.competition.configs.CompetitionConversions;
+import com.Austin-W-Music.fish.competition.configs.CompetitionFile;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +29,7 @@ public class CompetitionQueue {
         competitions.clear();
         fileMap.clear();
 
-        File compsFolder = new File(EvenMoreFish.getInstance().getDataFolder(), "competitions");
+        File compsFolder = new File(DeepFishing.getInstance().getDataFolder(), "competitions");
         if (EvenMoreFish.getInstance().isFirstLoad()) {
             loadDefaultFiles(compsFolder);
         }
@@ -41,7 +41,7 @@ public class CompetitionQueue {
         }
 
         competitionFiles.forEach(file -> {
-            EvenMoreFish.debug("Loading " + file.getName() + " competition");
+            DeepFishing.debug("Loading " + file.getName() + " competition");
             CompetitionFile competitionFile;
             try {
                 competitionFile = new CompetitionFile(file);
@@ -55,7 +55,7 @@ public class CompetitionQueue {
             }
             // Skip duplicate IDs
             if (fileMap.containsKey(competitionFile.getId())) {
-                EvenMoreFish.getInstance().getLogger().warning("A competition with the id: " + competitionFile.getId() + " already exists! Skipping.");
+                DeepFishing.getInstance().getLogger().warning("A competition with the id: " + competitionFile.getId() + " already exists! Skipping.");
                 return;
             }
             fileMap.put(competitionFile.getId(), competitionFile);
@@ -66,21 +66,21 @@ public class CompetitionQueue {
             if (loadRepeatedTiming(competition)) {
                 return;
             }
-            EvenMoreFish.debug(Level.WARNING, file.getName() + "'s timings are not configured properly. This competition will never automatically start.");
+            DeepFishing.debug(Level.WARNING, file.getName() + "'s timings are not configured properly. This competition will never automatically start.");
         });
     }
 
     private void regenExampleFile(@NotNull File targetDirectory) {
         new File(targetDirectory, "_example.yml").delete();
-        FileUtil.loadFileOrResource(targetDirectory, "_example.yml", "competitions/_example.yml", EvenMoreFish.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "_example.yml", "competitions/_example.yml", DeepFishing.getInstance());
     }
 
     private void loadDefaultFiles(@NotNull File targetDirectory) {
-        EvenMoreFish.getInstance().getLogger().info("Loading default competition configs.");
-        FileUtil.loadFileOrResource(targetDirectory, "main.yml", "competitions/main.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "sunday1.yml", "competitions/sunday1.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "sunday2.yml", "competitions/sunday2.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "weekend.yml", "competitions/weekend.yml", EvenMoreFish.getInstance());
+        DeepFishing.getInstance().getLogger().info("Loading default competition configs.");
+        FileUtil.loadFileOrResource(targetDirectory, "main.yml", "competitions/main.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "sunday1.yml", "competitions/sunday1.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "sunday2.yml", "competitions/sunday2.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "weekend.yml", "competitions/weekend.yml", DeepFishing.getInstance());
     }
 
     public TreeMap<String, CompetitionFile> getFileMap() {
