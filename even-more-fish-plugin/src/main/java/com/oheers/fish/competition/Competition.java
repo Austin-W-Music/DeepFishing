@@ -1,21 +1,21 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
 import com.github.Anon8281.universalScheduler.UniversalRunnable;
 import com.github.Anon8281.universalScheduler.scheduling.tasks.MyScheduledTask;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.EMFCompetitionEndEvent;
-import com.oheers.fish.api.EMFCompetitionStartEvent;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.api.reward.Reward;
-import com.oheers.fish.competition.configs.CompetitionFile;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.DFCompetitionEndEvent;
+import com.Austin-W-Music.fish.api.DFCompetitionStartEvent;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.api.reward.Reward;
+import com.Austin-W-Music.fish.competition.configs.CompetitionFile;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
 import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.config.messages.Messages;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.database.model.UserReport;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.config.messages.Messages;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -91,7 +91,7 @@ public class Competition {
 
     public void begin() {
         try {
-            if (!isAdminStarted() && EvenMoreFish.getInstance().getVisibleOnlinePlayers().size() < playersNeeded) {
+            if (!isAdminStarted() && DeepFishing.getInstance().getVisibleOnlinePlayers().size() < playersNeeded) {
                 ConfigMessage.NOT_ENOUGH_PLAYERS.getMessage().broadcast();
                 return;
             }
@@ -116,14 +116,14 @@ public class Competition {
 
             initTimer();
             announceBegin();
-            EMFCompetitionStartEvent startEvent = new EMFCompetitionStartEvent(this);
+            DFCompetitionStartEvent startEvent = new DFCompetitionStartEvent(this);
             Bukkit.getServer().getPluginManager().callEvent(startEvent);
             epochStartTime = Instant.now().getEpochSecond();
 
             // Execute start commands
             getCompetitionFile().getStartCommands().forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
 
-            EvenMoreFish.getInstance().getDecidedRarities().clear();
+            DeepFishing.getInstance().getDecidedRarities().clear();
         } catch (Exception ex) {
             end(true);
         }
@@ -139,7 +139,7 @@ public class Competition {
         }
         try {
             if (!startFail) {
-                EMFCompetitionEndEvent endEvent = new EMFCompetitionEndEvent(this);
+                DFCompetitionEndEvent endEvent = new DFCompetitionEndEvent(this);
                 Bukkit.getServer().getPluginManager().callEvent(endEvent);
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     ConfigMessage.COMPETITION_END.getMessage().send(player);
@@ -151,8 +151,8 @@ public class Competition {
                 }
                 if (MainConfig.getInstance().databaseEnabled()) {
                     Competition competitionRef = this;
-                    EvenMoreFish.getScheduler().runTaskAsynchronously(() -> {
-                        EvenMoreFish.getInstance().getDatabase().createCompetitionReport(competitionRef);
+                    DeepFishing.getScheduler().runTaskAsynchronously(() -> {
+                        DeepFishing.getInstance().getDatabase().createCompetitionReport(competitionRef);
                         leaderboard.clear();
                     });
                 } else {
@@ -160,7 +160,7 @@ public class Competition {
                 }
             }
         } catch (Exception exception) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, "An exception was thrown while the competition was being ended!", exception);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, "An exception was thrown while the competition was being ended!", exception);
         } finally {
             active = null;
         }
@@ -176,7 +176,7 @@ public class Competition {
                     cancel();
                 }
             }
-        }.runTaskTimer(EvenMoreFish.getInstance(), 0, 20);
+        }.runTaskTimer(DeepFishing.getInstance(), 0, 20);
     }
 
     /**
@@ -351,7 +351,7 @@ public class Competition {
 
         UserReport userReport = DataManager.getInstance().getUserReportIfExists(entry.getPlayer());
         if (userReport == null) {
-            EvenMoreFish.getInstance().getLogger().severe("Could not fetch User Report for " + entry.getPlayer() + ", their data has not been modified.");
+            DeepFishing.getInstance().getLogger().severe("Could not fetch User Report for " + entry.getPlayer() + ", their data has not been modified.");
             return;
         }
 
@@ -472,7 +472,7 @@ public class Competition {
     }
 
     private static int getRemainingTime() {
-        int competitionStartTime = EvenMoreFish.getInstance().getCompetitionQueue().getNextCompetition();
+        int competitionStartTime = DeepFishing.getInstance().getCompetitionQueue().getNextCompetition();
         int currentTime = AutoRunner.getCurrentTimeCode();
         if (competitionStartTime > currentTime) {
             return competitionStartTime - currentTime;
