@@ -1,4 +1,4 @@
-package com.oheers.fish.permissions;
+package com.Austin-W-Music.fish.permissions;
 
 public class UserPerms {
 
@@ -6,14 +6,14 @@ public class UserPerms {
         throw new UnsupportedOperationException();
     }
 
-    public static final String USE_ROD = "emf.use_rod";
-    public static final String SHOP = "emf.shop";
-    public static final String TOGGLE = "emf.toggle";
-    public static final String TOP = "emf.top";
-    public static final String SELL_ALL = "emf.sellall";
-    public static final String GUI = "emf.gui";
-    public static final String NEXT = "emf.next";
-    public static final String HELP = "emf.help";
-    public static final String APPLYBAITS = "emf.applybaits";
+    public static final String USE_ROD = "df.use_rod";
+    public static final String SHOP = "df.shop";
+    public static final String TOGGLE = "df.toggle";
+    public static final String TOP = "df.top";
+    public static final String SELL_ALL = "df.sellall";
+    public static final String GUI = "df.gui";
+    public static final String NEXT = "df.next";
+    public static final String HELP = "df.help";
+    public static final String APPLYBAITS = "df.applybaits";
 
 }
