@@ -1,9 +1,9 @@
-package com.oheers.fish.config.messages;
+package com.Austin-W-Music.fish.config.messages;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.config.ConfigBase;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.config.ConfigBase;
+import com.Austin-W-Music.fish.config.MainConfig;
 import dev.dejvokep.boostedyaml.settings.updater.UpdaterSettings;
 
 public class Messages extends ConfigBase {
@@ -11,7 +11,7 @@ public class Messages extends ConfigBase {
     private static Messages instance = null;
 
     public Messages() {
-        super("messages.yml", "locales/" + "messages_" + MainConfig.getInstance().getLocale() + ".yml", EvenMoreFish.getInstance(), true);
+        super("messages.yml", "locales/" + "messages_" + MainConfig.getInstance().getLocale() + ".yml", DeepFishing.getInstance(), true);
         instance = this;
     }
 
@@ -20,7 +20,7 @@ public class Messages extends ConfigBase {
     }
 
     public String getSTDPrefix() {
-        AbstractMessage message = EvenMoreFish.getAdapter().createMessage("");
+        AbstractMessage message = DeepFishing.getAdapter().createMessage("");
         message.prependMessage(PrefixType.DEFAULT.getPrefix());
         message.appendString("&r");
         return message.getLegacyMessage();
