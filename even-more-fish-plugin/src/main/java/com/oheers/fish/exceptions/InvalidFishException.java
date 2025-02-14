@@ -1,4 +1,4 @@
-package com.oheers.fish.exceptions;
+package com.Austin-W-Music.fish.exceptions;
 
 public class InvalidFishException extends Exception {
 
