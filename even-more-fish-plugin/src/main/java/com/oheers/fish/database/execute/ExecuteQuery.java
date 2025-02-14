@@ -1,8 +1,8 @@
-package com.oheers.fish.database.execute;
+package com.Austin-W-Music.fish.database.execute;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.database.connection.ConnectionFactory;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.database.connection.ConnectionFactory;
 import org.jooq.DSLContext;
 import org.jooq.conf.Settings;
 
@@ -24,7 +24,7 @@ public abstract class ExecuteQuery<T> extends ExecuteBase {
             DSLContext dslContext = getContext(connection);
             return onRunQuery(dslContext);
         } catch (Exception e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE,"Query execution failed", e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE,"Query execution failed", e);
             return empty();
         }
     }
