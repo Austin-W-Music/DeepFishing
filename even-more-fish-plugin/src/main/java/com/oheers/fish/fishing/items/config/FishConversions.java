@@ -1,7 +1,7 @@
-package com.oheers.fish.fishing.items.config;
+package com.Austin-W-Music.fish.fishing.items.config;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.config.ConfigBase;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.config.ConfigBase;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,17 +11,17 @@ public class FishConversions extends RarityConversions {
 
     @Override
     public void performCheck() {
-        File fishFile = new File(EvenMoreFish.getInstance().getDataFolder(), "fish.yml");
+        File fishFile = new File(DeepFishing.getInstance().getDataFolder(), "fish.yml");
         if (!fishFile.exists() || !fishFile.isFile()) {
             return;
         }
-        EvenMoreFish.getInstance().getLogger().info("Performing automatic conversion of fish configs.");
+        DeepFishing.getInstance().getLogger().info("Performing automatic conversion of fish configs.");
         File raritiesDir = getRaritiesDirectory();
         if (!raritiesDir.exists()) {
             // Do nothing if the rarities directory does not exist.
             return;
         }
-        ConfigBase config = new ConfigBase(fishFile, EvenMoreFish.getInstance(), false);
+        ConfigBase config = new ConfigBase(fishFile, DeepFishing.getInstance(), false);
         Section fishSection = config.getConfig().getSection("fish");
         if (fishSection == null) {
             finalizeConversion(config);
@@ -39,11 +39,11 @@ public class FishConversions extends RarityConversions {
     private void finalizeConversion(@NotNull ConfigBase fishConfig) {
         // Rename the file to fish.yml.old
         File file = fishConfig.getFile();
-        file.renameTo(new File(EvenMoreFish.getInstance().getDataFolder(), "fish.yml.old"));
+        file.renameTo(new File(DeepFishing.getInstance().getDataFolder(), "fish.yml.old"));
         file.delete();
 
-        EvenMoreFish.getInstance().getLogger().severe("Your fish configs have been automatically converted to the new format.");
-        EvenMoreFish.getInstance().getLogger().severe("They are now located in the rarity files.");
+        DeepFishing.getInstance().getLogger().severe("Your fish configs have been automatically converted to the new format.");
+        DeepFishing.getInstance().getLogger().severe("They are now located in the rarity files.");
     }
 
     private void convertSectionToFile(@NotNull Section section) {
@@ -51,12 +51,12 @@ public class FishConversions extends RarityConversions {
         if (id == null) {
             return;
         }
-        File rarityFile = new File(EvenMoreFish.getInstance().getDataFolder(), "rarities/" + id + ".yml");
+        File rarityFile = new File(DeepFishing.getInstance().getDataFolder(), "rarities/" + id + ".yml");
         // Do nothing if the file doesn't exist.
         if (!rarityFile.exists()) {
             return;
         }
-        ConfigBase configBase = new ConfigBase(rarityFile, EvenMoreFish.getInstance(), false);
+        ConfigBase configBase = new ConfigBase(rarityFile, DeepFishing.getInstance(), false);
         Section fishSection = configBase.getConfig().createSection("fish");
         fishSection.setAll(section.getRouteMappedValues(true));
         configBase.save();
