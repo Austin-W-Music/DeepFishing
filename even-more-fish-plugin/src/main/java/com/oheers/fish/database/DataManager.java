@@ -1,12 +1,12 @@
-package com.oheers.fish.database;
+package com.Austin-W-Music.fish.database;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Expiry;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.database.model.FishReport;
-import com.oheers.fish.database.model.UserReport;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.database.model.FishReport;
+import com.Austin-W-Music.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -63,11 +63,11 @@ public class DataManager {
     }
 
     public void loadUserReportsIntoCache() {
-        EvenMoreFish.getScheduler().runTaskAsynchronously(() -> {
+        DeepFishing.getScheduler().runTaskAsynchronously(() -> {
             for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-                UserReport playerReport = EvenMoreFish.getInstance().getDatabase().readUserReport(player.getUniqueId());
+                UserReport playerReport = DeepFishing.getInstance().getDatabase().readUserReport(player.getUniqueId());
                 if (playerReport == null) {
-                    EvenMoreFish.getInstance().getLogger().warning("Could not read report for player (" + player.getUniqueId() + ")");
+                    DeepFishing.getInstance().getLogger().warning("Could not read report for player (" + player.getUniqueId() + ")");
                     continue;
                 }
                 DataManager.getInstance().putUserReportCache(player.getUniqueId(), playerReport);
@@ -206,22 +206,22 @@ public class DataManager {
 
     public void saveFishReports() {
         ConcurrentMap<UUID, List<FishReport>> allReports = DataManager.getInstance().getAllFishReports();
-        EvenMoreFish.getInstance().getLogger().info("Saving " + allReports.size() + " fish reports.");
+        DeepFishing.getInstance().getLogger().info("Saving " + allReports.size() + " fish reports.");
         for (Map.Entry<UUID, List<FishReport>> entry : allReports.entrySet()) {
-            EvenMoreFish.getInstance().getDatabase().writeFishReports(entry.getKey(), entry.getValue());
+            DeepFishing.getInstance().getDatabase().writeFishReports(entry.getKey(), entry.getValue());
 
 
-            if (!EvenMoreFish.getInstance().getDatabase().hasUser(entry.getKey())) {
-                EvenMoreFish.getInstance().getDatabase().createUser(entry.getKey());
+            if (!DeepFishing.getInstance().getDatabase().hasUser(entry.getKey())) {
+                DeepFishing.getInstance().getDatabase().createUser(entry.getKey());
             }
 
         }
     }
 
     public void saveUserReports() {
-        EvenMoreFish.getInstance().getLogger().info("Saving " + DataManager.getInstance().getAllUserReports().size() + " user reports.");
+        DeepFishing.getInstance().getLogger().info("Saving " + DataManager.getInstance().getAllUserReports().size() + " user reports.");
         for (UserReport report : DataManager.getInstance().getAllUserReports()) {
-            EvenMoreFish.getInstance().getDatabase().writeUserReport(report.getUUID(), report);
+            DeepFishing.getInstance().getDatabase().writeUserReport(report.getUUID(), report);
         }
     }
 
