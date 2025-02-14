@@ -1,14 +1,14 @@
-package com.oheers.fish.fishing.items;
+package com.Austin-W-Music.fish.fishing.items;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.FileUtil;
-import com.oheers.fish.api.requirement.Requirement;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.fishing.items.config.FishConversions;
-import com.oheers.fish.fishing.items.config.RarityConversions;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.FileUtil;
+import com.Austin-W-Music.fish.api.requirement.Requirement;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.fishing.items.config.FishConversions;
+import com.Austin-W-Music.fish.fishing.items.config.RarityConversions;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -85,7 +85,7 @@ public class FishManager {
 
     // TODO cleanup
     public Rarity getRandomWeightedRarity(Player fisher, double boostRate, Set<Rarity> boostedRarities, Set<Rarity> totalRarities) {
-        Map<UUID, Rarity> decidedRarities = EvenMoreFish.getInstance().getDecidedRarities();
+        Map<UUID, Rarity> decidedRarities = DeepFishing.getInstance().getDecidedRarities();
         if (fisher != null && decidedRarities.containsKey(fisher.getUniqueId())) {
             Rarity chosenRarity = decidedRarities.get(fisher.getUniqueId());
             decidedRarities.remove(fisher.getUniqueId());
@@ -143,7 +143,7 @@ public class FishManager {
             if (r <= 0.0) break;
         }
 
-        if (!Competition.isActive() && EvenMoreFish.getInstance().isRaritiesCompCheckExempt()) {
+        if (!Competition.isActive() && DeepFishing.getInstance().isRaritiesCompCheckExempt()) {
             if (allowedRarities.get(idx).hasCompExemptFish()) return allowedRarities.get(idx);
         } else if (Competition.isActive() || !MainConfig.getInstance().isCompetitionUnique()) {
             return allowedRarities.get(idx);
@@ -177,7 +177,7 @@ public class FishManager {
         if (r == null) return null;
         // will store all the fish that match the player's biome or don't discriminate biomes
 
-        // Protection against /emf admin reload causing the plugin to be unable to get the rarity
+        // Protection against /df admin reload causing the plugin to be unable to get the rarity
         if (r.getOriginalFishList().isEmpty()) {
             r = getRandomWeightedRarity(p, 1, null, Set.copyOf(rarityMap.values()));
         }
@@ -199,7 +199,7 @@ public class FishManager {
 
         // if the config doesn't define any fish that can be fished in this biome.
         if (available.isEmpty()) {
-            EvenMoreFish.getInstance().getLogger().warning("There are no fish of the rarity " + r.getId() + " that can be fished at (x=" + l.getX() + ", y=" + l.getY() + ", z=" + l.getZ() + ")");
+            DeepFishing.getInstance().getLogger().warning("There are no fish of the rarity " + r.getId() + " that can be fished at (x=" + l.getX() + ", y=" + l.getY() + ", z=" + l.getZ() + ")");
             return null;
         }
 
@@ -226,15 +226,15 @@ public class FishManager {
         for (Rarity rarity : rarityMap.values()) {
             allFish += rarity.getOriginalFishList().size();
         }
-        EvenMoreFish.getInstance().getLogger().info("Loaded FishManager with " + rarityMap.size() + " Rarities and " + allFish + " Fish.");
+        DeepFishing.getInstance().getLogger().info("Loaded FishManager with " + rarityMap.size() + " Rarities and " + allFish + " Fish.");
     }
 
     private void loadRarities() {
 
         rarityMap.clear();
 
-        File raritiesFolder = new File(EvenMoreFish.getInstance().getDataFolder(), "rarities");
-        if (EvenMoreFish.getInstance().isFirstLoad()) {
+        File raritiesFolder = new File(DeepFishing.getInstance().getDataFolder(), "rarities");
+        if (DeepFishing.getInstance().isFirstLoad()) {
             loadDefaultFiles(raritiesFolder);
         }
         regenExampleFile(raritiesFolder);
@@ -245,7 +245,7 @@ public class FishManager {
         }
 
         rarityFiles.forEach(file -> {
-            EvenMoreFish.debug("Loading " + file.getName() + " rarity");
+            DeepFishing.debug("Loading " + file.getName() + " rarity");
             Rarity rarity;
             try {
                 rarity = new Rarity(file);
@@ -260,7 +260,7 @@ public class FishManager {
             // Skip duplicate IDs
             String id = rarity.getId();
             if (rarityMap.containsKey(id)) {
-                EvenMoreFish.getInstance().getLogger().warning("A rarity with the id: " + id + " already exists! Skipping.");
+                DeepFishing.getInstance().getLogger().warning("A rarity with the id: " + id + " already exists! Skipping.");
                 return;
             }
             rarityMap.put(id, rarity);
@@ -269,16 +269,16 @@ public class FishManager {
 
     private void regenExampleFile(@NotNull File targetDirectory) {
         new File(targetDirectory, "_example.yml").delete();
-        FileUtil.loadFileOrResource(targetDirectory, "_example.yml", "rarities/_example.yml", EvenMoreFish.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "_example.yml", "rarities/_example.yml", DeepFishing.getInstance());
     }
 
     private void loadDefaultFiles(@NotNull File targetDirectory) {
-        EvenMoreFish.getInstance().getLogger().info("Loading default rarity configs.");
-        FileUtil.loadFileOrResource(targetDirectory, "common.yml", "rarities/common.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "junk.yml", "rarities/junk.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "rare.yml", "rarities/rare.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "epic.yml", "rarities/epic.yml", EvenMoreFish.getInstance());
-        FileUtil.loadFileOrResource(targetDirectory, "legendary.yml", "rarities/legendary.yml", EvenMoreFish.getInstance());
+        DeepFishing.getInstance().getLogger().info("Loading default rarity configs.");
+        FileUtil.loadFileOrResource(targetDirectory, "common.yml", "rarities/common.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "junk.yml", "rarities/junk.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "rare.yml", "rarities/rare.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "epic.yml", "rarities/epic.yml", DeepFishing.getInstance());
+        FileUtil.loadFileOrResource(targetDirectory, "legendary.yml", "rarities/legendary.yml", DeepFishing.getInstance());
     }
 
 }
