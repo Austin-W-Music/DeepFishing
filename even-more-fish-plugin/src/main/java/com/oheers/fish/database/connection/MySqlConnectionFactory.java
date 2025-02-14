@@ -1,4 +1,4 @@
-package com.oheers.fish.database.connection;
+package com.Austin-W-Music.fish.database.connection;
 
 import com.zaxxer.hikari.HikariConfig;
 import org.jetbrains.annotations.NotNull;
