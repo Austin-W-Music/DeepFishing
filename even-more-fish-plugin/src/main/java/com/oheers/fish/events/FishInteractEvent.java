@@ -1,7 +1,7 @@
-package com.oheers.fish.events;
+package com.Austin-W-Music.fish.events;
 
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
