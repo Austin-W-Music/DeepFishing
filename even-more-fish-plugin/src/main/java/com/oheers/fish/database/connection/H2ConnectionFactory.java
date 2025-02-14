@@ -1,4 +1,4 @@
-package com.oheers.fish.database.connection;
+package com.Austin-W-Music.fish.database.connection;
 
 import com.zaxxer.hikari.HikariConfig;
 import org.jetbrains.annotations.NotNull;
@@ -8,7 +8,7 @@ import java.util.Map;
 public class H2ConnectionFactory extends ConnectionFactory {
     @Override
     protected void configureDatabase(@NotNull HikariConfig config, String address, int port, String databaseName, String username, String password) {
-        config.setJdbcUrl("jdbc:h2:file:./plugins/EvenMoreFish/" + databaseName);
+        config.setJdbcUrl("jdbc:h2:file:./plugins/DeepFishing/" + databaseName);
         config.setUsername(username);
         config.setPassword(password);
     }
