@@ -1,6 +1,6 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.EvenMoreFish;
+import com.Austin-W-Music.fish.DeepFishing;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -13,13 +13,13 @@ public class AutoRunner {
     static int lastMinute;
 
     public static void init() {
-        EvenMoreFish.getScheduler().runTaskTimer(() -> {
+        DeepFishing.getScheduler().runTaskTimer(() -> {
             // If the minute hasn't been checked against the competition queue.
             if (!wasMinuteChecked()) {
                 int weekMinute = getCurrentTimeCode();
 
                 // Beginning the competition set for schedule
-                CompetitionQueue queue = EvenMoreFish.getInstance().getCompetitionQueue();
+                CompetitionQueue queue = DeepFishing.getInstance().getCompetitionQueue();
                 if (queue.competitions.containsKey(weekMinute)) {
                     if (!Competition.isActive()) {
                         queue.competitions.get(weekMinute).begin();
@@ -40,7 +40,7 @@ public class AutoRunner {
 
         // Obtaining how many minutes have passed since midnight last Sunday
         DayOfWeek day = LocalDate.now().getDayOfWeek();
-        return EvenMoreFish.getInstance().getCompetitionQueue().generateTimeCode(day, timeKey);
+        return DeepFishing.getInstance().getCompetitionQueue().generateTimeCode(day, timeKey);
     }
 
     /**
