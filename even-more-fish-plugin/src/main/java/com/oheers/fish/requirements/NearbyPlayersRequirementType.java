@@ -1,9 +1,9 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.config.MainConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +20,7 @@ public class NearbyPlayersRequirementType implements RequirementType {
             if (configLocation == null) {
                 configLocation = "N/A";
             }
-            EvenMoreFish.getInstance().getLogger().warning("Could not find a valid player for " + configLocation + ", returning false by " +
+            DeepFishing.getInstance().getLogger().warning("Could not find a valid player for " + configLocation + ", returning false by " +
                     "default. The player may not have been given a fish if you see this message multiple times.");
             return false;
         }
@@ -31,7 +31,7 @@ public class NearbyPlayersRequirementType implements RequirementType {
             try {
                 nearbyRequirement = Integer.parseInt(value);
             } catch (NumberFormatException exception) {
-                EvenMoreFish.getInstance().getLogger().severe(value + " is not a valid integer");
+                DeepFishing.getInstance().getLogger().severe(value + " is not a valid integer");
                 return false;
             }
             if (nearbyPlayers >= nearbyRequirement) {
@@ -53,7 +53,7 @@ public class NearbyPlayersRequirementType implements RequirementType {
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
