@@ -1,6 +1,6 @@
-package com.oheers.fish.database.strategies.impl;
+package com.Austin-W-Music.fish.database.strategies.impl;
 
-import com.oheers.fish.database.strategies.DatabaseTypeStrategy;
+import com.Austin-W-Music.fish.database.strategies.DatabaseTypeStrategy;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.conf.Settings;
 
