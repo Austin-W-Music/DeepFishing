@@ -1,6 +1,6 @@
-package com.oheers.fish.database.model;
+package com.Austin-W-Music.fish.database.model;
 
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
