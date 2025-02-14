@@ -1,7 +1,7 @@
-package com.oheers.fish.config;
+package com.Austin-W-Music.fish.config;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.gui.GUIUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.gui.GUIUtils;
 import de.themoep.inventorygui.GuiElement;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class GUIFillerConfig extends ConfigBase {
     private static GUIFillerConfig instance;
 
     public GUIFillerConfig() {
-        super("gui-fillers.yml", "gui-fillers.yml", EvenMoreFish.getInstance(), true);
+        super("gui-fillers.yml", "gui-fillers.yml", DeepFishing.getInstance(), true);
         instance = this;
     }
 
