@@ -1,27 +1,27 @@
-package com.oheers.fish.fishing;
+package com.Austin-W-Music.fish.fishing;
 
 import com.gmail.nossr50.config.experience.ExperienceConfig;
 import com.gmail.nossr50.util.player.UserManager;
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.EMFFishEvent;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.baits.ApplicationResult;
-import com.oheers.fish.baits.Bait;
-import com.oheers.fish.baits.BaitNBTManager;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.config.BaitFile;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.database.DataManager;
-import com.oheers.fish.exceptions.MaxBaitReachedException;
-import com.oheers.fish.exceptions.MaxBaitsReachedException;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
-import com.oheers.fish.permissions.UserPerms;
-import com.oheers.fish.utils.nbt.NbtKeys;
-import com.oheers.fish.utils.nbt.NbtUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.DFFishEvent;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.baits.ApplicationResult;
+import com.Austin-W-Music.fish.baits.Bait;
+import com.Austin-W-Music.fish.baits.BaitNBTManager;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.config.BaitFile;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.database.DataManager;
+import com.Austin-W-Music.fish.exceptions.MaxBaitReachedException;
+import com.Austin-W-Music.fish.exceptions.MaxBaitsReachedException;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.permissions.UserPerms;
+import com.Austin-W-Music.fish.utils.nbt.NbtKeys;
+import com.Austin-W-Music.fish.utils.nbt.NbtUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -55,7 +55,7 @@ public class FishingProcessor implements Listener {
             //check if player is using the fishing rod with correct nbt value.
             ItemStack rodInHand = event.getPlayer().getInventory().getItemInMainHand();
             if (rodInHand.getType() != Material.AIR) {
-                if (Boolean.FALSE.equals(NbtUtils.hasKey(rodInHand, NbtKeys.EMF_ROD_NBT))) {
+                if (Boolean.FALSE.equals(NbtUtils.hasKey(rodInHand, NbtKeys.DF_ROD_NBT))) {
                     //tag is null or tag is false
                     return;
                 }
@@ -87,7 +87,7 @@ public class FishingProcessor implements Listener {
                 FishUtils.giveItem(fish, event.getPlayer());
                 nonCustom.remove();
             } else {
-                // replaces the fishing item with a custom evenmorefish fish.
+                // replaces the fishing item with a custom deepfishing fish.
                 if (fish.getType().isAir()) {
                     nonCustom.remove();
                 } else {
@@ -107,7 +107,7 @@ public class FishingProcessor implements Listener {
     }
 
     private boolean isCustomFishAllowed(Player player) {
-        return MainConfig.getInstance().getEnabled() && (competitionOnlyCheck() || EvenMoreFish.getInstance().isRaritiesCompCheckExempt()) && EvenMoreFish.getInstance().isCustomFishing(player);
+        return MainConfig.getInstance().getEnabled() && (competitionOnlyCheck() || DeepFishing.getInstance().isRaritiesCompCheckExempt()) && DeepFishing.getInstance().isCustomFishing(player);
     }
 
     /**
@@ -124,13 +124,13 @@ public class FishingProcessor implements Listener {
         }
         Rarity fishRarity = FishManager.getInstance().getRandomWeightedRarity(player, 1, null, Set.copyOf(FishManager.getInstance().getRarityMap().values()));
         if (fishRarity == null) {
-            EvenMoreFish.getInstance().getLogger().severe("Could not determine a rarity for fish for " + player.getName());
+            DeepFishing.getInstance().getLogger().severe("Could not determine a rarity for fish for " + player.getName());
             return null;
         }
 
         Fish fish = FishManager.getInstance().getFish(fishRarity, location, player, 1, null, true);
         if (fish == null) {
-            EvenMoreFish.getInstance().getLogger().severe("Could not determine a fish for " + player.getName());
+            DeepFishing.getInstance().getLogger().severe("Could not determine a fish for " + player.getName());
             return null;
         }
         fish.setFisherman(player.getUniqueId());
@@ -145,14 +145,14 @@ public class FishingProcessor implements Listener {
             return null;
         }
 
-        if (EvenMoreFish.getInstance().isUsingMcMMO()
+        if (DeepFishing.getInstance().isUsingMcMMO()
             && ExperienceConfig.getInstance().isFishingExploitingPrevented()
             && UserManager.getPlayer(player).getFishingManager().isExploitingFishing(location.toVector())) {
             return null;
         }
 
         if (BaitFile.getInstance().getBaitCatchPercentage() > 0
-            && EvenMoreFish.getInstance().getRandom().nextDouble() * 100.0 < BaitFile.getInstance().getBaitCatchPercentage()) {
+            && DeepFishing.getInstance().getRandom().nextDouble() * 100.0 < BaitFile.getInstance().getBaitCatchPercentage()) {
             Bait caughtBait = BaitNBTManager.randomBaitCatch();
             if (caughtBait != null) {
                 AbstractMessage message = ConfigMessage.BAIT_CAUGHT.getMessage();
@@ -183,7 +183,7 @@ public class FishingProcessor implements Listener {
 
         fish.init();
 
-        EMFFishEvent cEvent = new EMFFishEvent(fish, player);
+        DFFishEvent cEvent = new DFFishEvent(fish, player);
         Bukkit.getPluginManager().callEvent(cEvent);
         if (cEvent.isCancelled()) return null;
 
@@ -203,7 +203,7 @@ public class FishingProcessor implements Listener {
             message.setRarity(rarity);
             message.setLength(length);
 
-            EvenMoreFish.getInstance().incrementMetricFishCaught(1);
+            DeepFishing.getInstance().incrementMetricFishCaught(1);
 
             fish.getDisplayName();
             message.setFishCaught(fish.getDisplayName());
@@ -224,15 +224,15 @@ public class FishingProcessor implements Listener {
         competitionCheck(fish, player, location);
 
         if (MainConfig.getInstance().isDatabaseOnline()) {
-            EvenMoreFish.getScheduler().runTaskAsynchronously(() -> {
-                if (EvenMoreFish.getInstance().getDatabase().hasFishData(fish)) {
-                    EvenMoreFish.getInstance().getDatabase().incrementFish(fish);
+            DeepFishing.getScheduler().runTaskAsynchronously(() -> {
+                if (DeepFishing.getInstance().getDatabase().hasFishData(fish)) {
+                    DeepFishing.getInstance().getDatabase().incrementFish(fish);
 
-                    if (EvenMoreFish.getInstance().getDatabase().getLargestFishSize(fish) < fish.getLength()) {
-                        EvenMoreFish.getInstance().getDatabase().updateLargestFish(fish, player.getUniqueId());
+                    if (DeepFishing.getInstance().getDatabase().getLargestFishSize(fish) < fish.getLength()) {
+                        DeepFishing.getInstance().getDatabase().updateLargestFish(fish, player.getUniqueId());
                     }
                 } else {
-                    EvenMoreFish.getInstance().getDatabase().createFishData(fish, player.getUniqueId());
+                    DeepFishing.getInstance().getDatabase().createFishData(fish, player.getUniqueId());
                 }
 
                 DataManager.getInstance().handleFishCatch(player.getUniqueId(), fish);
