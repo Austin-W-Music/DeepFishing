@@ -1,10 +1,10 @@
-package com.oheers.fish.database.connection;
+package com.Austin-W-Music.fish.database.connection;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.database.migrate.LegacyToV3DatabaseMigration;
-import com.oheers.fish.database.strategies.DatabaseStrategyFactory;
-import com.oheers.fish.utils.ManifestUtil;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.database.migrate.LegacyToV3DatabaseMigration;
+import com.Austin-W-Music.fish.database.strategies.DatabaseStrategyFactory;
+import com.Austin-W-Music.fish.utils.ManifestUtil;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.command.CommandSender;
 import org.flywaydb.core.Flyway;
@@ -75,7 +75,7 @@ public class MigrationManager {
     }
 
     public boolean usingV2() {
-        boolean dataFolder = Files.isDirectory(Paths.get(EvenMoreFish.getInstance().getDataFolder() + "/data/"));
+        boolean dataFolder = Files.isDirectory(Paths.get(DeepFishing.getInstance().getDataFolder() + "/data/"));
         return dataFolder || queryTableExistence("Fish2");
     }
 
@@ -131,7 +131,7 @@ public class MigrationManager {
         final MigrationVersion latestBaseVersion = MigrationVersion.fromVersion(latestBaselineVersion);
         try (Connection ignored = connectionFactory.getConnection()) {
             // This will create the database file if it doesn't exist
-            EvenMoreFish.debug("Attempting first connection to database...");
+            DeepFishing.debug("Attempting first connection to database...");
         } catch (SQLException e) {
             return latestBaseVersion;
         }
