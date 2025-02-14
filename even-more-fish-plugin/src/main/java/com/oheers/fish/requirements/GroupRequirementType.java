@@ -1,8 +1,8 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -44,7 +44,7 @@ public class GroupRequirementType implements RequirementType {
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
