@@ -1,8 +1,8 @@
-package com.oheers.fish.database.connection;
+package com.Austin-W-Music.fish.database.connection;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.config.MainConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.jetbrains.annotations.NotNull;
@@ -52,7 +52,7 @@ public abstract class ConnectionFactory {
 
     public void init() {
         HikariConfig config = new HikariConfig();
-        config.setPoolName("evenmorefish-hikari");
+        config.setPoolName("deepfishing-hikari");
 
         configureDatabase(config, getDatabaseAddress(), getDatabasePort(), MainConfig.getInstance().getDatabase(), MainConfig.getInstance().getUsername(), MainConfig.getInstance().getPassword());
         config.setInitializationFailTimeout(-1);
@@ -114,7 +114,7 @@ public abstract class ConnectionFactory {
         try {
             Class.forName(getDriverClass());
         } catch (ClassNotFoundException e) {
-            EvenMoreFish.getInstance().getLogger().severe("Tried to init driver: %s, but could not find it.".formatted(getDriverClass()));
+            DeepFishing.getInstance().getLogger().severe("Tried to init driver: %s, but could not find it.".formatted(getDriverClass()));
         }
     }
 
