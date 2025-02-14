@@ -1,9 +1,9 @@
-package com.oheers.fish.fishing.items;
+package com.Austin-W-Music.fish.fishing.items;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.Requirement;
-import com.oheers.fish.config.ConfigBase;
-import com.oheers.fish.exceptions.InvalidFishException;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.Requirement;
+import com.Austin-W-Music.fish.config.ConfigBase;
+import com.Austin-W-Music.fish.exceptions.InvalidFishException;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class Rarity extends ConfigBase {
 
-    private static final Logger logger = EvenMoreFish.getInstance().getLogger();
+    private static final Logger logger = DeepFishing.getInstance().getLogger();
 
     private boolean fishWeighted;
     private Requirement requirement = new Requirement();
@@ -29,7 +29,7 @@ public class Rarity extends ConfigBase {
      * @param section The file for this rarity.
      */
     public Rarity(@NotNull File file) throws InvalidConfigurationException {
-        super(file, EvenMoreFish.getInstance(), false);
+        super(file, DeepFishing.getInstance(), false);
         performRequiredConfigChecks();
         updateRequirementFormats();
         fishList = loadFish();
@@ -182,7 +182,7 @@ public class Rarity extends ConfigBase {
             try {
                 fishList.add(Fish.createOrThrow(this, fishSection));
             } catch (InvalidFishException exception) {
-                EvenMoreFish.getInstance().getLogger().log(Level.WARNING, exception.getMessage(), exception);
+                DeepFishing.getInstance().getLogger().log(Level.WARNING, exception.getMessage(), exception);
             }
         });
         // Creates an immutable list.
