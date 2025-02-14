@@ -1,16 +1,16 @@
-package com.oheers.fish.gui;
+package com.Austin-W-Music.fish.gui;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.config.GUIConfig;
-import com.oheers.fish.gui.guis.BaitsGUI;
-import com.oheers.fish.gui.guis.EMFGUI;
-import com.oheers.fish.gui.guis.MainMenuGUI;
-import com.oheers.fish.gui.guis.SellGUI;
-import com.oheers.fish.selling.SellHelper;
-import com.oheers.fish.utils.ItemBuilder;
-import com.oheers.fish.utils.ItemFactory;
-import com.oheers.fish.utils.ItemUtils;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.config.GUIConfig;
+import com.Austin-W-Music.fish.gui.guis.BaitsGUI;
+import com.Austin-W-Music.fish.gui.guis.DFGUI;
+import com.Austin-W-Music.fish.gui.guis.MainMenuGUI;
+import com.Austin-W-Music.fish.gui.guis.SellGUI;
+import com.Austin-W-Music.fish.selling.SellHelper;
+import com.Austin-W-Music.fish.utils.ItemBuilder;
+import com.Austin-W-Music.fish.utils.ItemFactory;
+import com.Austin-W-Music.fish.utils.ItemUtils;
 import de.themoep.inventorygui.*;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
@@ -106,14 +106,14 @@ public class GUIUtils {
     public static InventoryGui createGUI(@Nullable Section section) {
         if (section == null) {
             return new InventoryGui(
-                    EvenMoreFish.getInstance(),
-                    EvenMoreFish.getAdapter().createMessage("&cBroken GUI! Please tell an admin!").getLegacyMessage(),
+                    DeepFishing.getInstance(),
+                    DeepFishing.getAdapter().createMessage("&cBroken GUI! Please tell an admin!").getLegacyMessage(),
                     new String[0]
             );
         }
         return new InventoryGui(
-                EvenMoreFish.getInstance(),
-                EvenMoreFish.getAdapter().createMessage(section.getString("title", "EvenMoreFish Inventory")).getLegacyMessage(),
+                DeepFishing.getInstance(),
+                DeepFishing.getAdapter().createMessage(section.getString("title", "DeepFishing Inventory")).getLegacyMessage(),
                 section.getStringList("layout").toArray(new String[0])
         );
     }
@@ -187,7 +187,7 @@ public class GUIUtils {
         return matches;
     }
 
-    public static List<GuiElement> getElements(@NotNull Section section, @Nullable EMFGUI gui, @Nullable Supplier<Map<String, String>> replacementSupplier) {
+    public static List<GuiElement> getElements(@NotNull Section section, @Nullable DFGUI gui, @Nullable Supplier<Map<String, String>> replacementSupplier) {
         return section.getRoutesAsStrings(false)
                 .stream()
                 .map(section::getSection)
@@ -209,7 +209,7 @@ public class GUIUtils {
         return true;
     }
 
-    public static Map<String, GuiElement.Action> getActionMap(@Nullable EMFGUI gui) {
+    public static Map<String, GuiElement.Action> getActionMap(@Nullable DFGUI gui) {
         Map<String, GuiElement.Action> newActionMap = new HashMap<>();
         // Exiting the main menu should close the GUI
         newActionMap.put("full-exit", click -> {
@@ -230,7 +230,7 @@ public class GUIUtils {
         // Toggling custom fish should redraw the GUI and leave it at that
         newActionMap.put("fish-toggle", click -> {
             if (click.getWhoClicked() instanceof Player player) {
-                EvenMoreFish.getInstance().performFishToggle(player);
+                DeepFishing.getInstance().performFishToggle(player);
             }
             click.getGui().draw();
             return true;
@@ -251,7 +251,7 @@ public class GUIUtils {
             return true;
         });
         newActionMap.put("show-command-help", click -> {
-            Bukkit.dispatchCommand(click.getWhoClicked(), "emf help");
+            Bukkit.dispatchCommand(click.getWhoClicked(), "df help");
             return true;
         });
         newActionMap.put("sell-inventory", click -> {
