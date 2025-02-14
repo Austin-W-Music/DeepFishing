@@ -1,8 +1,8 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +20,7 @@ public class InGameTimeRequirementType implements RequirementType {
             if (configLocation == null) {
                 configLocation = "N/A";
             }
-            EvenMoreFish.getInstance().getLogger().severe("Could not get world for " + configLocation + ", returning false by " +
+            DeepFishing.getInstance().getLogger().severe("Could not get world for " + configLocation + ", returning false by " +
                     "default. The player may not have been given a fish if you see this message multiple times.");
             return false;
         }
@@ -32,7 +32,7 @@ public class InGameTimeRequirementType implements RequirementType {
                 minTime = Integer.parseInt(split[0]);
                 maxTime = Integer.parseInt(split[1]);
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException exception) {
-                EvenMoreFish.getInstance().getLogger().severe(value + " is not a valid ingame time format. Using the defaults.");
+                DeepFishing.getInstance().getLogger().severe(value + " is not a valid ingame time format. Using the defaults.");
                 minTime = 0;
                 maxTime = 24000;
             }
@@ -50,12 +50,12 @@ public class InGameTimeRequirementType implements RequirementType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
