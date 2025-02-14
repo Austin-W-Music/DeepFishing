@@ -1,8 +1,8 @@
-package com.oheers.fish.gui.guis;
+package com.Austin-W-Music.fish.gui.guis;
 
 import de.themoep.inventorygui.InventoryGui;
 
-public interface EMFGUI {
+public interface DFGUI {
 
     InventoryGui getGui();
 
