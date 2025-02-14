@@ -1,9 +1,9 @@
-package com.oheers.fish.events;
+package com.Austin-W-Music.fish.events;
 
 import com.gmail.nossr50.events.McMMOReplaceVanillaTreasureEvent;
 import com.gmail.nossr50.events.skills.fishing.McMMOPlayerFishingTreasureEvent;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.config.MainConfig;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.config.MainConfig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
