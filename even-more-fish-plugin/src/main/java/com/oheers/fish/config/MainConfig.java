@@ -1,8 +1,8 @@
-package com.oheers.fish.config;
+package com.Austin-W-Music.fish.config;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.economy.EconomyType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.economy.EconomyType;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import dev.dejvokep.boostedyaml.route.Route;
@@ -23,7 +23,7 @@ public class MainConfig extends ConfigBase {
     private List<String> mainCommandAliases = null;
 
     public MainConfig() {
-        super("config.yml", "config.yml", EvenMoreFish.getInstance(), true);
+        super("config.yml", "config.yml", DeepFishing.getInstance(), true);
         instance = this;
         applyOneTimeConversions();
     }
@@ -41,7 +41,7 @@ public class MainConfig extends ConfigBase {
     }
 
     public boolean isDatabaseOnline() {
-        return databaseEnabled() && !EvenMoreFish.getInstance().getDatabase().getMigrationManager().usingV2();
+        return databaseEnabled() && !DeepFishing.getInstance().getDatabase().getMigrationManager().usingV2();
     }
 
     public boolean isCompetitionUnique() {
@@ -190,12 +190,12 @@ public class MainConfig extends ConfigBase {
     }
 
     public String getAdminShortcutCommandName() {
-        return getConfig().getString("command.admin-shortcut.name", "emfa");
+        return getConfig().getString("command.admin-shortcut.name", "dfa");
     }
 
     public String getMainCommandName() {
         if (mainCommandName == null) {
-            mainCommandName = getConfig().getString("command.main", "emf");
+            mainCommandName = getConfig().getString("command.main", "df");
         }
         return mainCommandName;
     }
@@ -222,7 +222,7 @@ public class MainConfig extends ConfigBase {
             section.getStringList(key).forEach(biomeString -> {
                 Biome biome = FishUtils.getBiome(biomeString);
                 if (biome == null) {
-                    EvenMoreFish.getInstance().getLogger().severe(biomeString + " is not a valid biome, found when loading in biome set " + key + ".");
+                    DeepFishing.getInstance().getLogger().severe(biomeString + " is not a valid biome, found when loading in biome set " + key + ".");
                 }
                 biomes.add(biome);
             });
