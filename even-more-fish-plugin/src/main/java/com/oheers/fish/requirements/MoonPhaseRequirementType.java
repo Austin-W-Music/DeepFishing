@@ -1,8 +1,8 @@
-package com.oheers.fish.requirements;
+package com.Austin-W-Music.fish.requirements;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.requirement.RequirementContext;
-import com.oheers.fish.api.requirement.RequirementType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.requirement.RequirementContext;
+import com.Austin-W-Music.fish.api.requirement.RequirementType;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +23,7 @@ public class MoonPhaseRequirementType implements RequirementType {
             try {
                 phase = Phase.valueOf(value.toUpperCase());
             } catch (IllegalArgumentException exception) {
-                EvenMoreFish.getInstance().getLogger().severe(value + " is not a valid moon phase.");
+                DeepFishing.getInstance().getLogger().severe(value + " is not a valid moon phase.");
                 return false;
             }
             if (phase.getPhaseID() == phaseId) {
@@ -40,12 +40,12 @@ public class MoonPhaseRequirementType implements RequirementType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull Plugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
