@@ -1,4 +1,4 @@
-package com.oheers.fish.database.strategies;
+package com.Austin-W-Music.fish.database.strategies;
 
 import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.jooq.conf.Settings;
