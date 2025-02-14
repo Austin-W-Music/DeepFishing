@@ -1,6 +1,6 @@
-package com.oheers.fish.competition;
+package com.Austin-W-Music.fish.competition;
 
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 
 import java.time.Instant;
 import java.util.UUID;
