@@ -1,20 +1,20 @@
-package com.oheers.fish.database;
+package com.Austin-W-Music.fish.database;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionEntry;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.config.MainConfig;
-import com.oheers.fish.database.connection.*;
-import com.oheers.fish.database.execute.ExecuteQuery;
-import com.oheers.fish.database.execute.ExecuteUpdate;
-import com.oheers.fish.database.generated.mysql.Tables;
-import com.oheers.fish.database.generated.mysql.tables.records.CompetitionsRecord;
-import com.oheers.fish.database.model.FishReport;
-import com.oheers.fish.database.model.UserReport;
-import com.oheers.fish.database.strategies.DatabaseStrategyFactory;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionEntry;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.config.MainConfig;
+import com.Austin-W-Music.fish.database.connection.*;
+import com.Austin-W-Music.fish.database.execute.ExecuteQuery;
+import com.Austin-W-Music.fish.database.execute.ExecuteUpdate;
+import com.Austin-W-Music.fish.database.generated.mysql.Tables;
+import com.Austin-W-Music.fish.database.generated.mysql.tables.records.CompetitionsRecord;
+import com.Austin-W-Music.fish.database.model.FishReport;
+import com.Austin-W-Music.fish.database.model.UserReport;
+import com.Austin-W-Music.fish.database.strategies.DatabaseStrategyFactory;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.*;
@@ -109,7 +109,7 @@ public class Database implements DatabaseAPI {
         try (Connection connection = this.connectionFactory.getConnection()) {
             consumer.accept(this.getContext(connection));
         } catch (SQLException e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
         }
 
     }
@@ -576,7 +576,7 @@ public class Database implements DatabaseAPI {
         try {
             this.connectionFactory.shutdown();
         } catch (Exception e) {
-            EvenMoreFish.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
+            DeepFishing.getInstance().getLogger().log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
