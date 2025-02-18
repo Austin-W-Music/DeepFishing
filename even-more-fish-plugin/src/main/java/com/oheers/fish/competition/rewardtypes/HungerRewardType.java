@@ -1,7 +1,7 @@
-package com.oheers.fish.competition.rewardtypes;
+package com.Austin-W-Music.fish.competition.rewardtypes;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.reward.RewardType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.reward.RewardType;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,7 +16,7 @@ public class HungerRewardType implements RewardType {
         try {
             rewardHunger = Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            EvenMoreFish.getInstance().getLogger().warning("Invalid number specified for RewardType " + getIdentifier() + ": " + value);
+            DeepFishing.getInstance().getLogger().warning("Invalid number specified for RewardType " + getIdentifier() + ": " + value);
             return;
         }
         player.setFoodLevel(player.getFoodLevel() + rewardHunger);
@@ -29,11 +29,11 @@ public class HungerRewardType implements RewardType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull JavaPlugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 }
