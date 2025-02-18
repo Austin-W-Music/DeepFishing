@@ -1,17 +1,17 @@
-package com.oheers.fish.competition.strategies;
+package com.Austin-W-Music.fish.competition.strategies;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionEntry;
-import com.oheers.fish.competition.CompetitionStrategy;
-import com.oheers.fish.competition.CompetitionType;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.fishing.items.Fish;
-import com.oheers.fish.fishing.items.FishManager;
-import com.oheers.fish.fishing.items.Rarity;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionEntry;
+import com.Austin-W-Music.fish.competition.CompetitionStrategy;
+import com.Austin-W-Music.fish.competition.CompetitionType;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.fishing.items.FishManager;
+import com.Austin-W-Music.fish.fishing.items.Rarity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -72,7 +72,7 @@ public class SpecificFishStrategy implements CompetitionStrategy {
 
     private boolean chooseFish(Competition competition) {
         List<Rarity> configRarities = competition.getCompetitionFile().getAllowedRarities();
-        final Logger logger = EvenMoreFish.getInstance().getLogger();
+        final Logger logger = DeepFishing.getInstance().getLogger();
         if (configRarities.isEmpty()) {
             logger.severe(() -> "No allowed-rarities list found in the " + competition.getCompetitionFile().getFileName() + " competition config file.");
             return false;
