@@ -1,8 +1,8 @@
-package com.oheers.fish.competition.rewardtypes;
+package com.Austin-W-Music.fish.competition.rewardtypes;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.api.reward.RewardType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.FishUtils;
+import com.Austin-W-Music.fish.api.reward.RewardType;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +17,7 @@ public class ItemRewardType implements RewardType {
         String[] parsedItem = value.split(",");
         Material material = Material.getMaterial(parsedItem[0].toUpperCase());
         if (material == null) {
-            EvenMoreFish.getInstance().getLogger().warning("Invalid material specified for RewardType " + getIdentifier() + ": " + parsedItem[0]);
+            DeepFishing.getInstance().getLogger().warning("Invalid material specified for RewardType " + getIdentifier() + ": " + parsedItem[0]);
             return;
         }
         ItemStack item = new ItemStack(material);
@@ -26,7 +26,7 @@ public class ItemRewardType implements RewardType {
             try {
                 quantity = Integer.parseInt(parsedItem[1]);
             } catch (NumberFormatException ex) {
-                EvenMoreFish.getInstance().getLogger().warning("Invalid quantity specified for RewardType " + getIdentifier() + ": " + parsedItem[1]);
+                DeepFishing.getInstance().getLogger().warning("Invalid quantity specified for RewardType " + getIdentifier() + ": " + parsedItem[1]);
                 return;
             }
         }
@@ -42,12 +42,12 @@ public class ItemRewardType implements RewardType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull JavaPlugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
