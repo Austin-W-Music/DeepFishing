@@ -1,15 +1,15 @@
-package com.oheers.fish.competition.strategies;
+package com.Austin-W-Music.fish.competition.strategies;
 
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.adapter.AbstractMessage;
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionEntry;
-import com.oheers.fish.competition.CompetitionStrategy;
-import com.oheers.fish.competition.CompetitionType;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.config.messages.ConfigMessage;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.adapter.AbstractMessage;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionEntry;
+import com.Austin-W-Music.fish.competition.CompetitionStrategy;
+import com.Austin-W-Music.fish.competition.CompetitionType;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.config.messages.ConfigMessage;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +50,7 @@ public class RandomStrategy implements CompetitionStrategy {
 
     public CompetitionType getRandomType() {
         // -1 from the length so that the RANDOM isn't chosen as the random value.
-        int type = EvenMoreFish.getInstance().getRandom().nextInt(CompetitionType.values().length - 1);
+        int type = DeepFishing.getInstance().getRandom().nextInt(CompetitionType.values().length - 1);
         return CompetitionType.values()[type];
     }
 }
