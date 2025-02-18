@@ -1,9 +1,9 @@
-package com.oheers.fish.competition.strategies;
+package com.Austin-W-Music.fish.competition.strategies;
 
-import com.oheers.fish.competition.Competition;
-import com.oheers.fish.competition.CompetitionStrategy;
-import com.oheers.fish.competition.leaderboard.Leaderboard;
-import com.oheers.fish.fishing.items.Fish;
+import com.Austin-W-Music.fish.competition.Competition;
+import com.Austin-W-Music.fish.competition.CompetitionStrategy;
+import com.Austin-W-Music.fish.competition.leaderboard.Leaderboard;
+import com.Austin-W-Music.fish.fishing.items.Fish;
 import org.bukkit.entity.Player;
 
 
