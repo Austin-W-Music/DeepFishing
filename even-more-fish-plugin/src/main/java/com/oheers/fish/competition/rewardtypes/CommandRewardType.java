@@ -1,7 +1,7 @@
-package com.oheers.fish.competition.rewardtypes;
+package com.Austin-W-Music.fish.competition.rewardtypes;
 
-import com.oheers.fish.EvenMoreFish;
-import com.oheers.fish.api.reward.RewardType;
+import com.Austin-W-Music.fish.DeepFishing;
+import com.Austin-W-Music.fish.api.reward.RewardType;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -14,7 +14,7 @@ public class CommandRewardType implements RewardType {
     @Override
     public void doReward(@NotNull Player player, @NotNull String key, @NotNull String value, Location hookLocation) {
         String inputCommand = value.replace("{player}", player.getName());
-        if (EvenMoreFish.getInstance().isUsingPAPI()) inputCommand = PlaceholderAPI.setPlaceholders(player, inputCommand);
+        if (DeepFishing.getInstance().isUsingPAPI()) inputCommand = PlaceholderAPI.setPlaceholders(player, inputCommand);
         if (hookLocation != null) {
             inputCommand = inputCommand
                     .replace("{x}", Double.toString(hookLocation.getX()))
@@ -35,12 +35,12 @@ public class CommandRewardType implements RewardType {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Oheers";
+        return "DevAustin";
     }
 
     @Override
     public @NotNull JavaPlugin getPlugin() {
-        return EvenMoreFish.getInstance();
+        return DeepFishing.getInstance();
     }
 
 }
